@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — CLIMAS</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="preorder.html">Preorder</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+    <div class="nav-cta">
+      <button class="cart-btn" id="cartOpenBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Cart</span> <span class="cart-count empty" id="cartCount">0</span>
+      </button>
+      <button class="btn-primary" id="authOpenBtn">Sign in</button>
+      <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="preorder.html" data-mm="1">Preorder <em>device</em></a>
+  <a href="about.html" data-mm="1">About</a>
+  <div class="mm-foot">
+    <div class="loc">Ghana</div>
+    <div class="mm-btns">
+      <button id="mmCart">Cart <span id="mmCartCount">0</span></button>
+      <button class="primary" id="mmSignin">Sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT / STORY -->
+<section class="section">
+  <div class="section-label" data-num="ABOUT">The story</div>
+  <h2 class="section-title">We built CLIMAS because <em>we had to.</em></h2>
+  <p class="section-lede">Not because there was a market gap. Because there was a safety gap — and it was happening in our own homes.</p>
+
+  <div class="about-story">
+    <div class="about-body">
+      <div class="about-lead">
+        It started with a phone call at 3 a.m. A family member had left a gas knob cracked open overnight. Everyone was fine — <em>barely.</em> That morning, CLIMAS began.
+      </div>
+      <p>In Ghana, LPG is everywhere. Homes, office pantries, school kitchens, dorm common rooms, roadside food joints. Millions of cylinders, almost none of them monitored by anything smarter than a nose. That's the gap CLIMAS was built to fill: an affordable, always-on indoor safety device that doesn't ask you to download an app, read a manual, or trust your instincts when you're asleep.</p>
+      <p>The device itself is small and quiet. It sits in a corner — on a kitchen shelf, next to an office water dispenser, above a dormitory hallway door — and does one thing well: watch the air. Temperature, humidity, combustible gas. If readings go wrong, it reacts in seconds. A phone call to your emergency contact. A buzzer loud enough to wake a household. A red LED and an OLED screen that says one word: DANGER.</p>
+      <p>We built it on a capable ESP board with WiFi. We kept the internals deliberately simple — fewer components means fewer points of failure, lower cost, and a device we can actually hand-assemble right here in Ghana, tested and shipped in five days. The firmware is non-blocking: even if your WiFi goes down, the gas sensor, the buzzer, and the LED keep working. Safety doesn't get to depend on an internet connection.</p>
+      <p>The hardware is free because it has to be. If the thing that stands between a family and a gas leak is a price tag, we've already failed. What you pay for is the service layer — the alerting infrastructure, the live readings, the weather context, the support line when something goes wrong at 2 a.m. That's the subscription. ₵18 a month for the basics. ₵28 if you want the full online dashboard.</p>
+      <p>CLIMAS isn't just for homes. It's for offices with pantry kitchens. School science labs. College dormitories. Small restaurants. Server rooms where a gas heater runs in harmattan season. Anywhere there's a combustion source and people who'd rather know than guess.</p>
+      <p>We're a small team in Ghana, building something we believe every indoor space deserves. The device is the easy part — the hard part is making sure it reaches the people who need it. That's what we're working on now.</p>
+    </div>
+    <div class="about-side">
+      <div class="about-stat">
+        <span class="about-stat-label">Built in</span>
+        <span class="about-stat-value"><em>Ghana</em></span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-label">Assembly</span>
+        <span class="about-stat-value">By <em>hand</em></span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-label">Build time</span>
+        <span class="about-stat-value">5 days</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-label">Platform</span>
+        <span class="about-stat-value">ESP <em>board</em></span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-label">Firmware</span>
+        <span class="about-stat-value">Non-blocking</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-label">Device cost</span>
+        <span class="about-stat-value"><em>Free</em></span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-label">Status</span>
+        <span class="about-stat-value"><em>Preorder</em></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="padding-top:40px">
+  <div class="section-label" data-num="CONTACT">Get in touch</div>
+  <h2 class="section-title">Questions, partnerships, <em>or a preorder</em> — talk to us.</h2>
+  <p class="section-lede">We read everything. If you're a school, landlord, or organisation looking to deploy multiple units, tell us about your space.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info-card">
+      <h3>Based in <em>Ghana.</em></h3>
+      <p class="sub">Assembled locally, shipped anywhere in Ghana within five days of order confirmation. Reach us through any of the channels below.</p>
+      <div class="contact-method">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div><div class="contact-method-label">Email</div><div class="contact-method-value"><a href="mailto:hello@climas.live">hello@climas.live</a></div></div>
+      </div>
+      <div class="contact-method">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div><div class="contact-method-label">Phone</div><div class="contact-method-value"><a href="tel:+233200000000">+233 (0) 20 000 0000</a></div></div>
+      </div>
+      <div class="contact-method">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div><div class="contact-method-label">Location</div><div class="contact-method-value">Ghana</div></div>
+      </div>
+      <div class="contact-method">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        <div><div class="contact-method-label">Hours</div><div class="contact-method-value">Mon–Sat · 9am to 6pm GMT</div></div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h4>Send us a <em>message</em>.</h4>
+      <div class="form-row">
+        <div class="form-field"><label>Your name</label><input type="text" id="contactName" placeholder="Full name" /></div>
+        <div class="form-field"><label>Email</label><input type="email" id="contactEmail" placeholder="you@example.com" /></div>
+      </div>
+      <div class="form-field"><label>Subject</label><input type="text" id="contactSubject" placeholder="Preorder question · Partnership · Support" /></div>
+      <div class="form-field"><label>Your message</label><textarea id="contactMessage" rows="5" placeholder="Tell us about what you're looking for..." style="resize:vertical;min-height:120px;font-family:'Geist',sans-serif"></textarea></div>
+      <button class="auth-submit" id="contactSendBtn" style="margin-top:8px">Send message</button>
+      <div class="contact-sent" id="contactSent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2>Built in Ghana.<br/><em>For every indoor space.</em></h2>
+    <p>Free device. ₵18 or ₵28 a month. Assembled and shipped in 5 days.</p>
+    <a class="btn-hero" href="preorder.html">Preorder CLIMAS <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">CLIMAS</div>
+      <p class="footer-tag">Climate + gas. A proactive indoor safety system assembled in Ghana — protecting homes, offices, dorms, and any indoor space.</p>
+    </div>
+    <div class="footer-col"><h5>Product</h5><a href="preorder.html">Preorder device</a><a href="about.html">About</a><a href="#contact">Contact</a></div>
+    <div class="footer-col"><h5>Account</h5><a href="#" data-open-auth="signin">Sign in</a><a href="#" data-open-auth="signup">Create account</a></div>
+    <div class="footer-col"><h5>Reach us</h5><a href="mailto:hello@climas.live">hello@climas.live</a><a href="tel:+233200000000">+233 (0) 20 000 0000</a><a href="#contact">Ghana</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Climas Systems · Assembled in Ghana</span><span>Non-blocking firmware</span></div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-header"><div class="auth-tabs"><button class="auth-tab active" data-auth-tab="signin">Sign in</button><button class="auth-tab" data-auth-tab="signup">Create account</button></div></div>
+  <div class="auth-body">
+    <h2 class="auth-title" id="authTitle">Welcome back.</h2>
+    <p class="auth-sub" id="authSub">Sign in to choose a plan and activate your device.</p>
+    <div class="form-field" id="nameField" style="display:none"><label>Full name</label><input type="text" placeholder="Your name" id="nameInput" /></div>
+    <div class="form-field"><label>Email</label><input type="email" placeholder="you@climas.live" id="emailInput" /></div>
+    <div class="form-field"><label>Password</label><input type="password" placeholder="••••••••" id="passInput" /></div>
+    <button class="auth-submit" id="authSubmitBtn">Sign in</button>
+    <div class="auth-alt"><span id="authAltText">New to CLIMAS? </span><a id="authAltLink">Create an account</a></div>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

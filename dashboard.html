@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — CLIMAS</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="preorder.html">Preorder</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-primary" id="authOpenBtn">Sign in</button>
+      <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="preorder.html" data-mm="1">Preorder <em>device</em></a>
+  <a href="about.html" data-mm="1">About</a>
+  <div class="mm-foot">
+    <div class="loc">Ghana</div>
+    <div class="mm-btns">
+      <button class="primary" id="mmSignin">Sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="view-dashboard">
+<div class="dashboard">
+  <div class="dash-header">
+    <div>
+      <h1 class="dash-greeting">Good evening, <em id="dashName">Phil</em>.</h1>
+      <div class="dash-date">Ghana</div>
+    </div>
+    <div class="dash-status"><span class="dot"></span><span>All devices safe</span></div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="dash-card metric-card">
+      <div class="dash-card-label">Indoor temp <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></svg></div>
+      <div class="metric-value"><span id="mT">26.4</span><span class="metric-unit">°C</span></div>
+      <div class="metric-trend"><span class="pill">+0.2</span>vs 1h ago</div>
+      <svg class="metric-spark" id="sparkT" viewBox="0 0 200 40" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="dash-card metric-card">
+      <div class="dash-card-label">Humidity <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2s-7 8-7 13a7 7 0 0 0 14 0c0-5-7-13-7-13z"/></svg></div>
+      <div class="metric-value"><span id="mH">58</span><span class="metric-unit">%</span></div>
+      <div class="metric-trend"><span class="pill down">−1.1</span>vs 1h ago</div>
+      <svg class="metric-spark" id="sparkH" viewBox="0 0 200 40" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="dash-card metric-card">
+      <div class="dash-card-label">Gas (MQ-2) <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="metric-value"><span id="mG">112</span><span class="metric-unit">ppm</span></div>
+      <div class="metric-trend"><span class="pill">Normal</span>safe threshold &lt;300</div>
+      <svg class="metric-spark" id="sparkG" viewBox="0 0 200 40" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="dash-card metric-card">
+      <div class="dash-card-label">Online devices <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg></div>
+      <div class="metric-value">3<span class="metric-unit">/3</span></div>
+      <div class="metric-trend"><span class="pill" style="background:rgba(42,122,60,.08);color:var(--safe)">All connected</span></div>
+    </div>
+
+    <!-- chart -->
+    <div class="dash-card chart-card">
+      <div class="dash-card-label">24-hour overview</div>
+      <svg id="mainChart" viewBox="0 0 700 200" preserveAspectRatio="none" style="width:100%;height:240px"></svg>
+    </div>
+
+    <!-- weather -->
+    <div class="dash-card weather-card">
+      <div class="dash-card-label">Outdoor weather</div>
+      <div class="weather-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+      <div class="weather-city">Ghana</div>
+      <div class="weather-temp">33°</div>
+      <div class="weather-detail"><span>Feels like 37°</span><span>Humidity 77%</span><span>Wind 10 km/h</span></div>
+    </div>
+
+    <!-- devices -->
+    <div class="dash-card devices-card">
+      <div class="dash-card-label">Paired devices</div>
+      <div class="device-item"><span class="device-name"><span class="device-dot"></span>Kitchen</span><span class="device-reading">26.4°C · 58% · 112 ppm</span></div>
+      <div class="device-item"><span class="device-name"><span class="device-dot"></span>Living room</span><span class="device-reading">25.8°C · 62% · 88 ppm</span></div>
+      <div class="device-item"><span class="device-name"><span class="device-dot"></span>Office</span><span class="device-reading">24.1°C · 55% · 72 ppm</span></div>
+    </div>
+
+    <!-- alerts -->
+    <div class="dash-card alerts-card">
+      <div class="dash-card-label">Alert history</div>
+      <ul class="alert-list">
+        <li class="alert-item">
+          <div class="alert-icon danger"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div><div class="alert-title">Gas spike in Kitchen</div><div class="alert-sub">302 ppm · Auto-call placed · Resolved</div></div>
+          <div class="alert-time">Wed · 22:14</div>
+        </li>
+        <li class="alert-item">
+          <div class="alert-icon safe"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><div class="alert-title">Override activated</div><div class="alert-sub">Kitchen · Manual cooking mode · 18 min</div></div>
+          <div class="alert-time">Tue · 19:30</div>
+        </li>
+        <li class="alert-item">
+          <div class="alert-icon info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/></svg></div>
+          <div><div class="alert-title">Office device came online</div><div class="alert-sub">First pairing · Calibration complete</div></div>
+          <div class="alert-time">Sun · 16:03</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- subscription -->
+    <div class="dash-card sub-card">
+      <div class="dash-card-label">Subscription</div>
+      <div class="sub-card-grid">
+        <div><div class="sub-current-name" id="dashPlanName">Pro</div><div class="sub-current-tag" id="dashPlanTag">Full portal · Live dashboard</div></div>
+        <div class="sub-stat"><strong>Billed</strong><span id="dashPlanPrice">₵28 / month</span></div>
+        <div class="sub-stat"><strong>Next payment</strong><span>May 16</span></div>
+        <button class="sub-manage-btn">Manage plan</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-brand">CLIMAS</div><p class="footer-tag">Climate + gas. Assembled in Ghana.</p></div>
+    <div class="footer-col"><h5>Product</h5><a href="preorder.html">Preorder</a><a href="about.html">About</a><a href="about.html#contact">Contact</a></div>
+    <div class="footer-col"><h5>Account</h5><a href="#" data-open-auth="signin">Sign in</a></div>
+    <div class="footer-col"><h5>Reach us</h5><a href="mailto:hello@climas.live">hello@climas.live</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Climas Systems</span><span>Non-blocking firmware</span></div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-header"><div class="auth-tabs"><button class="auth-tab active" data-auth-tab="signin">Sign in</button><button class="auth-tab" data-auth-tab="signup">Create account</button></div></div>
+  <div class="auth-body">
+    <h2 class="auth-title" id="authTitle">Welcome back.</h2>
+    <p class="auth-sub" id="authSub">Sign in to access your dashboard.</p>
+    <div class="form-field" id="nameField" style="display:none"><label>Full name</label><input type="text" placeholder="Your name" id="nameInput" /></div>
+    <div class="form-field"><label>Email</label><input type="email" placeholder="you@climas.live" id="emailInput" /></div>
+    <div class="form-field"><label>Password</label><input type="password" placeholder="••••••••" id="passInput" /></div>
+    <button class="auth-submit" id="authSubmitBtn">Sign in</button>
+    <div class="auth-alt"><span id="authAltText">New to CLIMAS? </span><a id="authAltLink">Create an account</a></div>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

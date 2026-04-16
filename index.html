@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CLIMAS — Indoor Climate &amp; Gas Safety</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="preorder.html">Preorder</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-cta">
+      <button class="cart-btn" id="cartOpenBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Cart</span> <span class="cart-count empty" id="cartCount">0</span>
+      </button>
+      <button class="btn-primary" id="authOpenBtn">Sign in</button>
+      <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="preorder.html" data-mm="1">Preorder <em>device</em></a>
+  <a href="about.html" data-mm="1">About</a>
+  <div class="mm-foot">
+    <div class="loc">Ghana</div>
+    <div class="mm-btns">
+      <button id="mmCart">Cart <span id="mmCartCount">0</span></button>
+      <button class="primary" id="mmSignin">Sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-eyebrow">Climate + Gas &nbsp;·&nbsp; Ghanaian-built indoor safety</div>
+    <h1>A silent<br/><em>guardian</em> for every<br/>indoor space.</h1>
+    <p class="hero-lede">
+      CLIMAS continuously watches temperature, humidity, and combustible gas — then calls you, sounds the alarm, and flags the display the moment something isn't right. Free device, subscription-powered.
+    </p>
+    <div class="hero-cta">
+      <a class="btn-hero" href="preorder.html">Preorder your CLIMAS <span class="arrow">→</span></a>
+      <a class="btn-ghost" href="about.html">Our story</a>
+    </div>
+    <div class="hero-note">
+      <div><strong>₵0</strong>Free device</div>
+      <div><strong>5 days</strong>Assembly &amp; shipping</div>
+      <div><strong>24/7</strong>Offline-capable</div>
+    </div>
+  </div>
+  <div class="hero-device">
+    <div class="device-frame">
+      <div class="device-caption"><span>CLIMAS</span><span>Climate · Gas · Weather</span></div>
+      <img class="device-img" alt="CLIMAS device" />
+      <div class="device-caption device-caption-bottom"><span>HAND-ASSEMBLED</span><span>GHANA · 2026</span></div>
+    </div>
+    <div class="live-readout">
+      <div class="live-readout-label">Live · Sensors</div>
+      <div class="readout-row"><span>T</span><span>26.4 °C</span></div>
+      <div class="readout-row"><span>H</span><span>58 %</span></div>
+      <div class="readout-row"><span>GAS</span><span class="readout-status">SAFE</span></div>
+      <div class="readout-row"><span>WIFI</span><span>ONLINE</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Non-blocking firmware</span><span>Automatic phone call on danger</span><span>Weather feed</span><span>Manual cooking override</span><span>OLED danger display</span><span>Free device on preorder</span><span>Assembled in Ghana</span><span>Works offline</span><span>Non-blocking firmware</span><span>Automatic phone call on danger</span><span>Weather feed</span><span>Manual cooking override</span><span>OLED danger display</span><span>Free device on preorder</span><span>Assembled in Ghana</span><span>Works offline</span>
+  </div>
+</div>
+
+<!-- SCENARIOS -->
+<section class="section" id="scenarios">
+  <div class="section-label" data-num="01">How it behaves</div>
+  <h2 class="section-title">Two scenarios. <em>One device.</em></h2>
+  <p class="section-lede">CLIMAS reacts differently depending on context — because not every gas reading means the same thing.</p>
+  <div class="scenarios">
+    <div class="scenario">
+      <div class="scenario-num">01</div>
+      <div class="scenario-tag"><span class="dot" style="background:var(--danger)"></span> Danger detected</div>
+      <h3>The forgotten <em>knob.</em></h3>
+      <p>Gas concentration climbs while nobody's cooking. CLIMAS triggers: automatic phone call to your emergency contact, buzzer sounds, red LED flashes, OLED screen displays DANGER. All within seconds.</p>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">02</div>
+      <div class="scenario-tag"><span class="dot" style="background:var(--safe)"></span> Override active</div>
+      <h3>Cooking with the <em>burner.</em></h3>
+      <p>You press the override button before cooking. CLIMAS continues monitoring but won't alarm on expected spikes. When readings normalize, it re-arms automatically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" style="padding-top:40px">
+  <div class="section-label" data-num="02">What it does</div>
+  <h2 class="section-title">Six things CLIMAS <em>handles</em> for you.</h2>
+  <div class="guard-grid">
+    <div class="guard-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.67 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.76.31 1.55.54 2.36.67A2 2 0 0 1 22 16.92z"/></svg>
+      <div class="guard-num">01 / Call</div>
+      <h4>Emergency phone call</h4>
+      <p>When gas levels spike, CLIMAS automatically places a phone call to your emergency contact. No app required on their end.</p>
+    </div>
+    <div class="guard-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0z"/></svg>
+      <div class="guard-num">02 / Watch</div>
+      <h4>Climate monitoring</h4>
+      <p>Temperature and humidity tracked continuously. The OLED display shows live readings at a glance, day or night.</p>
+    </div>
+    <div class="guard-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="guard-num">03 / React</div>
+      <h4>Instant alarm</h4>
+      <p>Active piezo buzzer paired with a high-visibility red LED. Impossible to ignore when it matters.</p>
+    </div>
+    <div class="guard-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="guard-num">04 / Defer</div>
+      <h4>Cooking override</h4>
+      <p>One button press suspends alerts while you cook. The device keeps monitoring and re-arms automatically once readings normalize.</p>
+    </div>
+    <div class="guard-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <div class="guard-num">05 / Display</div>
+      <h4>OLED readout</h4>
+      <p>Monochrome screen shows temperature, humidity, gas status, and DANGER warnings. Legible from across any room.</p>
+    </div>
+    <div class="guard-card">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <div class="guard-num">06 / Account</div>
+      <h4>Live dashboard</h4>
+      <p>Pro subscribers get a web portal with live readings, 24-hour charts, outdoor weather context, and a full alert history.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="section" id="plans" style="padding-top:40px">
+  <div class="section-label" data-num="03">The model</div>
+  <h2 class="section-title">The device is <em>free.</em><br/>A subscription keeps it alive.</h2>
+  <p class="section-lede">We ship a fully-assembled CLIMAS at no cost. An active subscription is required to pair the device and keep it guarding your space. Pricing is per device. Cancel anytime.</p>
+  <div class="plans">
+    <div class="plan">
+      <div class="plan-name">Basic</div>
+      <div class="plan-note">Per device · local safety</div>
+      <div class="plan-desc">Everything the device does on its own, without the online portal.</div>
+      <div class="plan-price"><span class="plan-price-cur">₵</span><span class="plan-price-amt">18</span><span class="plan-price-per">/month</span></div>
+      <ul class="plan-features">
+        <li>1 paired CLIMAS device</li>
+        <li>Automatic phone-call on danger</li>
+        <li>Buzzer, red LED &amp; OLED warning</li>
+        <li>Manual cooking override</li>
+        <li>Non-blocking offline safety</li>
+        <li class="muted">No online dashboard</li>
+        <li class="muted">No reading history</li>
+      </ul>
+      <a class="plan-cta" href="preorder.html">Start with Basic</a>
+    </div>
+    <div class="plan featured">
+      <div class="plan-badge">Full access</div>
+      <div class="plan-name">Pro</div>
+      <div class="plan-note">Per device · full portal</div>
+      <div class="plan-desc">Everything in Basic, plus the live web dashboard with readings, charts, weather, and alert history.</div>
+      <div class="plan-price"><span class="plan-price-cur">₵</span><span class="plan-price-amt">28</span><span class="plan-price-per">/month</span></div>
+      <ul class="plan-features">
+        <li>1 paired CLIMAS device</li>
+        <li>Everything in Basic</li>
+        <li>Live online dashboard</li>
+        <li>24-hour readings &amp; charts</li>
+        <li>Outdoor weather feed</li>
+        <li>Alert history &amp; logs</li>
+        <li>Priority email support</li>
+      </ul>
+      <a class="plan-cta" href="preorder.html">Start with Pro</a>
+    </div>
+  </div>
+  <p class="section-lede" style="margin-top:32px;font-size:14px;opacity:.75">Need multiple devices? Subscribe per device — each one gets its own plan. <a href="about.html#contact" style="color:var(--forest);font-weight:500">Contact us</a> for volume orders.</p>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="padding-top:40px">
+  <div class="section-label" data-num="04">Questions</div>
+  <h2 class="section-title">Things people ask before <em>preordering.</em></h2>
+  <div class="faq" id="faq">
+    <div class="faq-item">
+      <button class="faq-q">Is the device really free? <span class="sign">+</span></button>
+      <div class="faq-a">Yes. The CLIMAS device is provided at no cost when you preorder with an active subscription. The subscription keeps your alerts, cloud features, and support running — the hardware itself isn't billed.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What happens if I cancel my subscription? <span class="sign">+</span></button>
+      <div class="faq-a">The device will stop syncing to your dashboard and automatic phone-call alerts will be disabled. Local sensing, buzzer, LED, and OLED danger warnings continue to work offline. You can reactivate at any time.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">How long does shipping take? <span class="sign">+</span></button>
+      <div class="faq-a">Five days from order confirmation. Every unit is assembled and tested by hand in Ghana, then shipped to your address.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Does it work if my WiFi is down? <span class="sign">+</span></button>
+      <div class="faq-a">Yes. The firmware is non-blocking, so gas monitoring, buzzer, red LED, and the OLED danger banner all continue to function without any network connection. Phone-call alerts and dashboard sync require WiFi.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">What's the difference between Basic and Pro? <span class="sign">+</span></button>
+      <div class="faq-a">Basic (₵18/mo) gives you everything the device does on its own — automatic phone calls, the buzzer, the LED, the OLED, and the cooking override. Pro (₵28/mo) adds the live web dashboard with 24-hour readings, outdoor weather, alert history, and priority support. Both are priced per device.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">Can I add more devices later? <span class="sign">+</span></button>
+      <div class="faq-a">Yes. Each device has its own subscription, so you can add a unit to your kitchen now and another to a server room or classroom later. Manage them all from one account.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-band-inner">
+    <h2>The hardware is free.<br/>The <em>peace of mind</em> isn't optional.</h2>
+    <p>Preorder now. Assembled in Ghana, shipped within 5 days. Pair to your account and start protecting your space.</p>
+    <a class="btn-hero" href="preorder.html">Preorder CLIMAS <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">CLIMAS</div>
+      <p class="footer-tag">Climate + gas. A proactive indoor safety system assembled in Ghana — protecting homes, offices, dorms, and any indoor space.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="preorder.html">Preorder device</a>
+      <a href="about.html">About</a>
+      <a href="about.html#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Account</h5>
+      <a href="#" data-open-auth="signin">Sign in</a>
+      <a href="#" data-open-auth="signup">Create account</a>
+    </div>
+    <div class="footer-col">
+      <h5>Reach us</h5>
+      <a href="mailto:hello@climas.live">hello@climas.live</a>
+      <a href="tel:+233200000000">+233 (0) 20 000 0000</a>
+      <a href="about.html#contact">Ghana</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Climas Systems · Assembled in Ghana</span>
+    <span>Non-blocking firmware</span>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header"><h3>Your cart</h3><button class="cart-close" id="cartCloseBtn">×</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-subtotal"><span>Billed today</span><span class="cart-subtotal-amt" id="cartSubtotal">₵0.00</span></div>
+    <div class="cart-note">Device is free. Subscription billed monthly.</div>
+    <a class="cart-checkout-btn" href="preorder.html" id="checkoutBtn">Checkout</a>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-header"><div class="auth-tabs"><button class="auth-tab active" data-auth-tab="signin">Sign in</button><button class="auth-tab" data-auth-tab="signup">Create account</button></div></div>
+  <div class="auth-body">
+    <h2 class="auth-title" id="authTitle">Welcome back.</h2>
+    <p class="auth-sub" id="authSub">Sign in to choose a plan and activate your device.</p>
+    <div class="form-field" id="nameField" style="display:none"><label>Full name</label><input type="text" placeholder="Your name" id="nameInput" /></div>
+    <div class="form-field"><label>Email</label><input type="email" placeholder="you@climas.live" id="emailInput" /></div>
+    <div class="form-field"><label>Password</label><input type="password" placeholder="••••••••" id="passInput" /></div>
+    <button class="auth-submit" id="authSubmitBtn">Sign in</button>
+    <div class="auth-alt"><span id="authAltText">New to CLIMAS? </span><a id="authAltLink">Create an account</a></div>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

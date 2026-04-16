@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Preorder — CLIMAS</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="brand-mark"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="preorder.html" class="active">Preorder</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-cta">
+      <button class="cart-btn" id="cartOpenBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Cart</span> <span class="cart-count empty" id="cartCount">0</span>
+      </button>
+      <button class="btn-primary" id="authOpenBtn">Sign in</button>
+      <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="preorder.html" data-mm="1">Preorder <em>device</em></a>
+  <a href="about.html" data-mm="1">About</a>
+  <div class="mm-foot">
+    <div class="loc">Ghana</div>
+    <div class="mm-btns">
+      <button id="mmCart">Cart <span id="mmCartCount">0</span></button>
+      <button class="primary" id="mmSignin">Sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- STORE -->
+<div id="storeSection">
+<section class="store-hero">
+  <div class="store-gallery">
+    <span class="badge">Preorder · 5-day build</span>
+    <img class="device-img" alt="CLIMAS" />
+  </div>
+  <div class="store-details">
+    <div class="store-eyebrow">CLIMAS · Indoor safety device</div>
+    <h1 class="store-title"><em>Free</em> device.<br/>Subscription<br/>required.</h1>
+    <p class="store-sub">Fully assembled. Tested and calibrated. Hand-finished in Ghana. Your device arrives pre-paired to your account the moment a plan is active.</p>
+    <div class="store-price-block">
+      <span class="store-price">₵0</span>
+      <div><div class="store-price-strike">₵480</div><div class="store-price-label">Device · Free on preorder</div></div>
+    </div>
+    <div class="store-req">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <div><strong>Active subscription required</strong>Choose a plan below. The device won't pair without one.</div>
+    </div>
+    <div class="store-plan-select">
+      <div class="store-plan-select-label">Select subscription plan</div>
+      <div class="plan-option" data-plan="basic">
+        <div class="plan-option-left"><span class="plan-radio"></span><div><h5>Basic</h5><div class="plan-desc-s">Device only · No online dashboard</div></div></div>
+        <div><div class="plan-option-price">₵18</div><div class="plan-option-price-per">/ month</div></div>
+      </div>
+      <div class="plan-option selected" data-plan="pro">
+        <div class="plan-option-left"><span class="plan-radio"></span><div><h5>Pro</h5><div class="plan-desc-s">Device + live online dashboard</div></div></div>
+        <div><div class="plan-option-price">₵28</div><div class="plan-option-price-per">/ month</div></div>
+      </div>
+    </div>
+    <div class="store-btn-row">
+      <button class="btn-hero" id="addToCartBtn">Add to cart <span class="arrow">→</span></button>
+      <a class="btn-ghost" href="index.html">Back to overview</a>
+    </div>
+    <div class="store-meta">
+      <div class="store-meta-item"><strong>Assembly</strong><span>Ghana</span></div>
+      <div class="store-meta-item"><strong>Build time</strong><span>5 days</span></div>
+      <div class="store-meta-item"><strong>Shipping</strong><span>Ghana-wide</span></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CHECKOUT (hidden by default) -->
+<div id="checkoutSection" style="display:none">
+<section class="checkout-view">
+  <h2>Complete your <em style="font-family:'Fraunces',serif;font-style:italic;color:var(--forest)">preorder</em>.</h2>
+  <p class="sub">Fill in your shipping details. Your device will be built and dispatched within 5 business days.</p>
+  <div class="checkout-grid">
+    <div class="checkout-form">
+      <div class="form-row">
+        <div class="form-field"><label>First name</label><input type="text" value="" placeholder="Your first name" /></div>
+        <div class="form-field"><label>Last name</label><input type="text" value="" placeholder="Your surname" /></div>
+      </div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="you@climas.live" /></div>
+      <div class="form-field"><label>Phone · For emergency calls</label><input type="tel" placeholder="+233 ..." /></div>
+      <div class="form-field"><label>Delivery address</label><input type="text" placeholder="House number, street" /></div>
+      <div class="form-row">
+        <div class="form-field"><label>City</label><input type="text" placeholder="City" /></div>
+        <div class="form-field"><label>Region</label><input type="text" placeholder="Region" /></div>
+      </div>
+      <button class="auth-submit" id="placeOrderBtn" style="margin-top:12px">Confirm preorder</button>
+    </div>
+    <div class="checkout-summary" id="checkoutSummary">
+      <h4>Order summary</h4>
+      <div id="summaryItems"></div>
+      <div class="summary-row"><span>Device</span><span>₵0.00</span></div>
+      <div class="summary-row"><span>Shipping · Ghana</span><span>Free</span></div>
+      <div class="summary-total"><span>Due today</span><span class="amt" id="summaryTotal">₵28</span></div>
+      <div class="cart-note" style="margin-top:14px">Billed monthly after the first payment. Cancel anytime.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- SUCCESS (hidden by default) -->
+<div id="successSection" style="display:none">
+<div class="success-card">
+  <div class="success-badge"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
+  <h2>Your <em>CLIMAS</em> is queued for assembly.</h2>
+  <p>We've sent a confirmation to your email. Your device will be assembled and shipped within 5 days.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn-hero" id="successDashBtn" href="dashboard.html">Go to dashboard <span class="arrow">→</span></a>
+    <a class="btn-ghost" href="index.html">Back home</a>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div><div class="footer-brand">CLIMAS</div><p class="footer-tag">Climate + gas. Assembled in Ghana — protecting homes, offices, dorms, and any indoor space.</p></div>
+    <div class="footer-col"><h5>Product</h5><a href="preorder.html">Preorder device</a><a href="about.html">About</a><a href="about.html#contact">Contact</a></div>
+    <div class="footer-col"><h5>Account</h5><a href="#" data-open-auth="signin">Sign in</a><a href="#" data-open-auth="signup">Create account</a></div>
+    <div class="footer-col"><h5>Reach us</h5><a href="mailto:hello@climas.live">hello@climas.live</a><a href="tel:+233200000000">+233 (0) 20 000 0000</a><a href="about.html#contact">Ghana</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Climas Systems · Assembled in Ghana</span><span>Non-blocking firmware</span></div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header"><h3>Your cart</h3><button class="cart-close" id="cartCloseBtn">×</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-subtotal"><span>Billed today</span><span class="cart-subtotal-amt" id="cartSubtotal">₵0.00</span></div>
+    <div class="cart-note">Device is free. Subscription billed monthly.</div>
+    <button class="cart-checkout-btn" id="checkoutBtn">Checkout</button>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-header"><div class="auth-tabs"><button class="auth-tab active" data-auth-tab="signin">Sign in</button><button class="auth-tab" data-auth-tab="signup">Create account</button></div></div>
+  <div class="auth-body">
+    <h2 class="auth-title" id="authTitle">Welcome back.</h2>
+    <p class="auth-sub" id="authSub">Sign in to choose a plan and activate your device.</p>
+    <div class="form-field" id="nameField" style="display:none"><label>Full name</label><input type="text" placeholder="Your name" id="nameInput" /></div>
+    <div class="form-field"><label>Email</label><input type="email" placeholder="you@climas.live" id="emailInput" /></div>
+    <div class="form-field"><label>Password</label><input type="password" placeholder="••••••••" id="passInput" /></div>
+    <button class="auth-submit" id="authSubmitBtn">Sign in</button>
+    <div class="auth-alt"><span id="authAltText">New to CLIMAS? </span><a id="authAltLink">Create an account</a></div>
+  </div>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
