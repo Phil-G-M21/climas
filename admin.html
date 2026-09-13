@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Admin — CLIMAS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%234fa87b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .admin-bar { border-bottom: 1px solid var(--line-soft); background: var(--base); }
+  .admin-bar .nav-in { height: 60px; }
+  .admin-brand { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk'; font-weight: 600; font-size: 17px; }
+  .admin-brand .tag { font-size: 11px; letter-spacing: .14em; color: var(--ink-mute); border: 1px solid var(--line); padding: 2px 8px; border-radius: 5px; text-transform: uppercase; }
+
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
+  .stat { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; }
+  .stat .num { font-family: 'Space Grotesk'; font-size: 30px; font-weight: 600; line-height: 1; margin-bottom: 8px; }
+  .stat .lab { font-size: 13px; color: var(--ink-soft); }
+  .stat.accent .num { color: var(--caution); }
+
+  .admin-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 30px; overflow-x: auto; }
+  .admin-tab { background: none; border: none; color: var(--ink-soft); font-family: 'Inter'; font-size: 14.5px; padding: 12px 16px; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .admin-tab.active { color: var(--ink); border-bottom-color: var(--safe); }
+
+  .adm-order { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; margin-bottom: 14px; }
+  .adm-order-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .adm-order-id { font-family: 'Space Grotesk'; font-size: 14px; color: var(--ink-soft); }
+  .adm-order-grid { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 16px; align-items: end; }
+  .adm-field .k { font-size: 11px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px; }
+  .adm-field .v { font-size: 14.5px; color: var(--ink); line-height: 1.5; }
+  .adm-order select { padding: 9px 12px; background: var(--base-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: 'Inter'; font-size: 14px; }
+  .adm-msg { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; margin-bottom: 14px; }
+  .adm-msg-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .adm-msg-from { font-weight: 600; font-size: 15px; }
+  .adm-msg-meta { font-size: 13px; color: var(--ink-mute); }
+  .adm-msg-subject { font-size: 13.5px; color: var(--safe); margin-bottom: 10px; }
+  .adm-msg-body { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; white-space: pre-wrap; }
+  .adm-prod { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 22px; margin-bottom: 14px; display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; }
+  .adm-prod .pname { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
+  .adm-prod .pslug { font-size: 12px; color: var(--ink-mute); font-family: 'Space Grotesk'; }
+  .adm-prod .price-edit { display: flex; align-items: center; gap: 8px; }
+  .adm-prod .price-edit input { width: 110px; padding: 9px 12px; background: var(--base-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: 'Space Grotesk'; font-size: 15px; }
+  @media (max-width: 720px) {
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .adm-order-grid { grid-template-columns: 1fr; }
+    .adm-prod { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav admin-bar">
+  <div class="wrap nav-in">
+    <a class="admin-brand" href="admin.html"><span class="dot"></span> CLIMAS <span class="tag">Admin</span></a>
+    <div class="nav-right">
+      <a class="btn-ghost" href="index.html">View site</a>
+      <button class="btn btn-line" id="signOutBtn" style="display:none">Sign out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- gate: loading -->
+<div id="loading" class="page-loading"><span class="spinner"></span></div>
+
+<!-- gate: login -->
+<div id="loginView" style="display:none">
+  <div class="auth-shell">
+    <div class="auth-card">
+      <h2>Admin sign in</h2>
+      <p class="sub">Sign in with your admin account.</p>
+      <div class="notice notice-err hide" id="loginErr"></div>
+      <div class="field"><label>Email</label><input type="email" id="admEmail" placeholder="you@example.com"></div>
+      <div class="field"><label>Password</label><input type="password" id="admPass" placeholder="Your password"></div>
+      <button class="btn btn-solid btn-lg btn-block" id="loginBtn">Sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- gate: not authorised -->
+<div id="denyView" style="display:none">
+  <div class="wrap" style="max-width:520px;margin:80px auto">
+    <div class="empty-state">
+      <h4>Not an admin account</h4>
+      <p style="margin-bottom:22px">This account does not have admin access. Sign in with your admin account, or add this account to the admins list in Supabase.</p>
+      <button class="btn btn-line" onclick="CLIMAS.signOut()">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<!-- dashboard -->
+<div id="dashView" style="display:none">
+  <div class="wrap" style="padding:40px 24px 80px">
+
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="orders">Orders</button>
+      <button class="admin-tab" data-tab="messages">Complaints</button>
+      <button class="admin-tab" data-tab="products">Products &amp; pricing</button>
+    </div>
+
+    <div id="tab-orders">
+      <div id="ordersHost"><div class="page-loading"><span class="spinner"></span></div></div>
+    </div>
+
+    <div id="tab-messages" style="display:none">
+      <div id="messagesHost"><div class="page-loading"><span class="spinner"></span></div></div>
+    </div>
+
+    <div id="tab-products" style="display:none">
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:20px">Edit a price in cedis and save. Turning a product off hides it from the shop.</p>
+      <div id="productsHost"><div class="page-loading"><span class="spinner"></span></div></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="climas.js"></script>
+<script>
+  const ORDER_STATUSES = ['pending_payment','paid','shipped','delivered','cancelled'];
+  const STATUS_LABEL = {
+    pending_payment: 'Pending payment', paid: 'Paid', shipped: 'Shipped',
+    delivered: 'Delivered', cancelled: 'Cancelled'
+  };
+  const STATUS_BADGE = {
+    pending_payment: 'badge-pending', paid: 'badge-paid', shipped: 'badge-shipped',
+    delivered: 'badge-delivered', cancelled: 'badge-cancelled'
+  };
+
+  function gate(view) {
+    ['loading','loginView','denyView','dashView'].forEach(v => {
+      document.getElementById(v).style.display = (v === view) ? 'block' : 'none';
+    });
+    document.getElementById('signOutBtn').style.display = (view === 'dashView') ? 'inline-flex' : 'none';
+  }
+
+  // ---- login ----
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const err = document.getElementById('loginErr');
+    err.classList.add('hide');
+    const email = document.getElementById('admEmail').value.trim();
+    const pass = document.getElementById('admPass').value;
+    if (!email || !pass) { err.textContent = 'Enter your email and password.'; err.classList.remove('hide'); return; }
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Signing in';
+    try { await CLIMAS.signIn(email, pass); location.reload(); }
+    catch (e) { err.textContent = e.message || 'Could not sign in.'; err.classList.remove('hide'); btn.disabled = false; btn.textContent = 'Sign in'; }
+  });
+  document.getElementById('signOutBtn').addEventListener('click', () => CLIMAS.signOut());
+
+  // ---- tabs ----
+  document.querySelectorAll('.admin-tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('.admin-tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    ['orders','messages','products'].forEach(p => {
+      document.getElementById('tab-' + p).style.display = (p === t.dataset.tab) ? 'block' : 'none';
+    });
+  }));
+
+  // ---- data loads ----
+  async function loadOrders() {
+    const host = document.getElementById('ordersHost');
+    const { data: orders, error } = await CLIMAS.sb
+      .from('orders').select('*, order_items(*)').order('created_at', { ascending: false });
+    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load orders</h4><p>' + error.message + '</p></div>'; return []; }
+    if (!orders.length) { host.innerHTML = '<div class="empty-state"><h4>No orders yet</h4></div>'; return []; }
+
+    host.innerHTML = orders.map(o => {
+      const date = new Date(o.created_at).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const items = (o.order_items || []).map(i => i.name_snapshot + (i.qty > 1 ? ' x' + i.qty : '')).join(', ') || 'CLIMAS device';
+      const opts = ORDER_STATUSES.map(s => '<option value="' + s + '"' + (s === o.status ? ' selected' : '') + '>' + STATUS_LABEL[s] + '</option>').join('');
+      return '<div class="adm-order">' +
+        '<div class="adm-order-top"><span class="adm-order-id">CLM-' + o.id.slice(0,6).toUpperCase() + ' · ' + date + '</span>' +
+        '<span class="badge ' + STATUS_BADGE[o.status] + '">' + STATUS_LABEL[o.status] + '</span></div>' +
+        '<div class="adm-order-grid">' +
+          '<div class="adm-field"><div class="k">Customer</div><div class="v">' + esc(o.shipping_name) + '<br>' + esc(o.shipping_phone) + '<br>' + esc(o.shipping_city) + '</div>' +
+          '<div class="k" style="margin-top:10px">Address</div><div class="v">' + esc(o.shipping_address) + '</div></div>' +
+          '<div class="adm-field"><div class="k">Items</div><div class="v">' + esc(items) + '</div>' +
+          '<div class="k" style="margin-top:10px">Total</div><div class="v">' + CLIMAS.money(o.subtotal_pesewas) + '</div></div>' +
+          '<div class="adm-field"><div class="k">Set status</div>' +
+          '<select data-order="' + o.id + '">' + opts + '</select></div>' +
+        '</div></div>';
+    }).join('');
+
+    host.querySelectorAll('select[data-order]').forEach(sel => {
+      sel.addEventListener('change', async () => {
+        const id = sel.dataset.order;
+        const { error } = await CLIMAS.sb.from('orders').update({ status: sel.value }).eq('id', id);
+        if (error) { CLIMAS.toast('Could not update: ' + error.message, 'err'); }
+        else { CLIMAS.toast('Order updated', 'ok'); loadStats(); }
+      });
+    });
+    return orders;
+  }
+
+  async function loadMessages() {
+    const host = document.getElementById('messagesHost');
+    const { data, error } = await CLIMAS.sb.from('contact_messages').select('*').order('created_at', { ascending: false });
+    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load messages</h4><p>' + error.message + '</p></div>'; return; }
+    if (!data.length) { host.innerHTML = '<div class="empty-state"><h4>No messages yet</h4></div>'; return; }
+    host.innerHTML = data.map(m => {
+      const date = new Date(m.created_at).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      return '<div class="adm-msg">' +
+        '<div class="adm-msg-top"><span class="adm-msg-from">' + esc(m.name) + ' · <a href="mailto:' + esc(m.email) + '" style="color:var(--ink-soft)">' + esc(m.email) + '</a></span>' +
+        '<span class="adm-msg-meta">' + date + '</span></div>' +
+        (m.subject ? '<div class="adm-msg-subject">' + esc(m.subject) + '</div>' : '') +
+        '<div class="adm-msg-body">' + esc(m.message) + '</div></div>';
+    }).join('');
+  }
+
+  async function loadProducts() {
+    const host = document.getElementById('productsHost');
+    const { data, error } = await CLIMAS.sb.from('products').select('*').order('sort');
+    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load products</h4><p>' + error.message + '</p></div>'; return; }
+    host.innerHTML = data.map(p => {
+      const cedis = (p.price_pesewas / 100);
+      const per = p.period ? (' / ' + p.period) : ' one-time';
+      return '<div class="adm-prod">' +
+        '<div><div class="pname">' + esc(p.name) + '<span style="color:var(--ink-mute);font-weight:400">' + per + '</span></div><div class="pslug">' + esc(p.slug) + '</div></div>' +
+        '<div class="price-edit">GH\u20B5 <input type="number" step="1" min="0" value="' + cedis + '" data-price="' + p.slug + '"></div>' +
+        '<div style="display:flex;gap:8px;align-items:center"><label style="font-size:13px;color:var(--ink-soft);display:flex;gap:6px;align-items:center"><input type="checkbox" data-active="' + p.slug + '"' + (p.active ? ' checked' : '') + '> Active</label>' +
+        '<button class="btn btn-solid" data-save="' + p.slug + '">Save</button></div>' +
+        '</div>';
+    }).join('');
+
+    host.querySelectorAll('button[data-save]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const slug = btn.dataset.save;
+        const priceEl = host.querySelector('input[data-price="' + slug + '"]');
+        const activeEl = host.querySelector('input[data-active="' + slug + '"]');
+        const pesewas = Math.round(parseFloat(priceEl.value || '0') * 100);
+        btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>';
+        const { error } = await CLIMAS.sb.from('products').update({ price_pesewas: pesewas, active: activeEl.checked }).eq('slug', slug);
+        if (error) CLIMAS.toast('Could not save: ' + error.message, 'err');
+        else CLIMAS.toast('Saved', 'ok');
+        btn.disabled = false; btn.textContent = 'Save';
+      });
+    });
+  }
+
+  async function loadStats() {
+    const host = document.getElementById('statGrid');
+    try {
+      const { data: orders } = await CLIMAS.sb.from('orders').select('status, subtotal_pesewas');
+      const { count: users } = await CLIMAS.sb.from('profiles').select('*', { count: 'exact', head: true });
+      const { count: msgs } = await CLIMAS.sb.from('contact_messages').select('*', { count: 'exact', head: true });
+      const all = orders || [];
+      const pending = all.filter(o => o.status === 'pending_payment').length;
+      const paidPlus = all.filter(o => ['paid','shipped','delivered'].includes(o.status));
+      const revenue = paidPlus.reduce((s, o) => s + (o.subtotal_pesewas || 0), 0);
+      host.innerHTML =
+        stat(all.length, 'Total orders') +
+        stat(pending, 'Awaiting payment', true) +
+        stat(CLIMAS.money(revenue), 'Revenue (confirmed)') +
+        stat((users || 0) + ' · ' + (msgs || 0), 'Customers · Messages');
+    } catch (e) { host.innerHTML = ''; }
+  }
+  function stat(num, lab, accent) {
+    return '<div class="stat' + (accent ? ' accent' : '') + '"><div class="num">' + num + '</div><div class="lab">' + lab + '</div></div>';
+  }
+
+  function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+
+  // ---- init ----
+  (async function () {
+    if (!CLIMAS.configured) { gate('loginView'); document.getElementById('loginErr').textContent = 'Backend not configured.'; document.getElementById('loginErr').classList.remove('hide'); return; }
+    const user = await CLIMAS.getUser();
+    if (!user) { gate('loginView'); return; }
+    // am I admin?
+    const { data: adminRow } = await CLIMAS.sb.from('admins').select('user_id').eq('user_id', user.id).maybeSingle();
+    if (!adminRow) { gate('denyView'); return; }
+    gate('dashView');
+    loadStats();
+    loadOrders();
+    loadMessages();
+    loadProducts();
+  })();
+</script>
+</body>
+</html>
