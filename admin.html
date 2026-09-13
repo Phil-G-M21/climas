@@ -22,28 +22,39 @@
   .stat .lab { font-size: 13px; color: var(--ink-soft); }
   .stat.accent .num { color: var(--caution); }
 
-  .admin-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 30px; overflow-x: auto; }
+  .admin-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 24px; overflow-x: auto; }
   .admin-tab { background: none; border: none; color: var(--ink-soft); font-family: 'Inter'; font-size: 14.5px; padding: 12px 16px; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
   .admin-tab.active { color: var(--ink); border-bottom-color: var(--safe); }
+
+  .adm-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  .adm-toolbar select { padding: 9px 12px; background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: 'Inter'; font-size: 14px; }
+  .adm-toolbar-right { display: flex; gap: 10px; }
+  .adm-toolbar .btn { padding: 9px 15px; font-size: 13.5px; }
 
   .adm-order { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; margin-bottom: 14px; }
   .adm-order-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
   .adm-order-id { font-family: 'Space Grotesk'; font-size: 14px; color: var(--ink-soft); }
-  .adm-order-grid { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 16px; align-items: end; }
+  .adm-order-grid { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 16px; align-items: start; }
   .adm-field .k { font-size: 11px; color: var(--ink-mute); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 5px; }
   .adm-field .v { font-size: 14.5px; color: var(--ink); line-height: 1.5; }
-  .adm-order select { padding: 9px 12px; background: var(--base-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: 'Inter'; font-size: 14px; }
+  .adm-order select { padding: 9px 12px; background: var(--base-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: 'Inter'; font-size: 14px; width: 100%; }
+  .btn-del { margin-top: 10px; width: 100%; background: none; border: 1px solid rgba(220,75,62,.4); color: var(--danger); border-radius: 8px; padding: 9px 12px; font-family: 'Inter'; font-size: 13.5px; cursor: pointer; }
+  .btn-del:hover { background: rgba(220,75,62,.1); }
+  .btn-del:disabled { opacity: .6; cursor: default; }
+
   .adm-msg { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; margin-bottom: 14px; }
   .adm-msg-top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
   .adm-msg-from { font-weight: 600; font-size: 15px; }
   .adm-msg-meta { font-size: 13px; color: var(--ink-mute); }
   .adm-msg-subject { font-size: 13.5px; color: var(--safe); margin-bottom: 10px; }
   .adm-msg-body { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; white-space: pre-wrap; }
+
   .adm-prod { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 22px; margin-bottom: 14px; display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; }
   .adm-prod .pname { font-weight: 600; font-size: 15px; margin-bottom: 3px; }
   .adm-prod .pslug { font-size: 12px; color: var(--ink-mute); font-family: 'Space Grotesk'; }
   .adm-prod .price-edit { display: flex; align-items: center; gap: 8px; }
   .adm-prod .price-edit input { width: 110px; padding: 9px 12px; background: var(--base-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; font-family: 'Space Grotesk'; font-size: 15px; }
+
   @media (max-width: 720px) {
     .stat-grid { grid-template-columns: 1fr 1fr; }
     .adm-order-grid { grid-template-columns: 1fr; }
@@ -63,30 +74,37 @@
   </div>
 </nav>
 
-<!-- gate: loading -->
 <div id="loading" class="page-loading"><span class="spinner"></span></div>
 
-<!-- gate: login -->
+<!-- login -->
 <div id="loginView" style="display:none">
   <div class="auth-shell">
     <div class="auth-card">
       <h2>Admin sign in</h2>
       <p class="sub">Sign in with your admin account.</p>
       <div class="notice notice-err hide" id="loginErr"></div>
-      <div class="field"><label>Email</label><input type="email" id="admEmail" placeholder="you@example.com"></div>
-      <div class="field"><label>Password</label><input type="password" id="admPass" placeholder="Your password"></div>
+      <div class="field"><label>Email</label><input type="email" id="admEmail" placeholder="admin@climas.com"></div>
+      <div class="field"><label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="admPass" placeholder="Your password">
+          <button type="button" class="pw-toggle" aria-label="Show password">
+            <svg class="ic-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="ic-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
       <button class="btn btn-solid btn-lg btn-block" id="loginBtn">Sign in</button>
     </div>
   </div>
 </div>
 
-<!-- gate: not authorised -->
+<!-- not authorised -->
 <div id="denyView" style="display:none">
   <div class="wrap" style="max-width:520px;margin:80px auto">
     <div class="empty-state">
       <h4>Not an admin account</h4>
-      <p style="margin-bottom:22px">This account does not have admin access. Sign in with your admin account, or add this account to the admins list in Supabase.</p>
-      <button class="btn btn-line" onclick="CLIMAS.signOut()">Sign out</button>
+      <p style="margin-bottom:22px">This account does not have admin access. Sign in with your admin account.</p>
+      <button class="btn btn-line" id="denySignOut">Sign out</button>
     </div>
   </div>
 </div>
@@ -104,10 +122,31 @@
     </div>
 
     <div id="tab-orders">
+      <div class="adm-toolbar">
+        <select id="orderFilter">
+          <option value="all">All statuses</option>
+          <option value="pending_payment">Pending payment</option>
+          <option value="paid">Paid</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <div class="adm-toolbar-right">
+          <button class="btn btn-line" id="refreshOrders">Refresh</button>
+          <button class="btn btn-line" id="exportOrders">Export CSV</button>
+        </div>
+      </div>
       <div id="ordersHost"><div class="page-loading"><span class="spinner"></span></div></div>
     </div>
 
     <div id="tab-messages" style="display:none">
+      <div class="adm-toolbar">
+        <span style="font-size:13.5px;color:var(--ink-mute)">Messages from the contact form</span>
+        <div class="adm-toolbar-right">
+          <button class="btn btn-line" id="refreshMessages">Refresh</button>
+          <button class="btn btn-line" id="exportMessages">Export CSV</button>
+        </div>
+      </div>
       <div id="messagesHost"><div class="page-loading"><span class="spinner"></span></div></div>
     </div>
 
@@ -123,14 +162,20 @@
 <script src="climas.js"></script>
 <script>
   const ORDER_STATUSES = ['pending_payment','paid','shipped','delivered','cancelled'];
-  const STATUS_LABEL = {
-    pending_payment: 'Pending payment', paid: 'Paid', shipped: 'Shipped',
-    delivered: 'Delivered', cancelled: 'Cancelled'
-  };
-  const STATUS_BADGE = {
-    pending_payment: 'badge-pending', paid: 'badge-paid', shipped: 'badge-shipped',
-    delivered: 'badge-delivered', cancelled: 'badge-cancelled'
-  };
+  const STATUS_LABEL = { pending_payment:'Pending payment', paid:'Paid', shipped:'Shipped', delivered:'Delivered', cancelled:'Cancelled' };
+  const STATUS_BADGE = { pending_payment:'badge-pending', paid:'badge-paid', shipped:'badge-shipped', delivered:'badge-delivered', cancelled:'badge-cancelled' };
+
+  let ALL_ORDERS = [];
+  let ALL_MESSAGES = [];
+
+  function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+
+  function waLink(phone) {
+    let d = (phone || '').replace(/\D/g, '');
+    if (d.startsWith('0')) d = '233' + d.slice(1);
+    else if (d.length === 9) d = '233' + d;
+    return d ? 'https://wa.me/' + d : '';
+  }
 
   function gate(view) {
     ['loading','loginView','denyView','dashView'].forEach(v => {
@@ -152,6 +197,7 @@
     catch (e) { err.textContent = e.message || 'Could not sign in.'; err.classList.remove('hide'); btn.disabled = false; btn.textContent = 'Sign in'; }
   });
   document.getElementById('signOutBtn').addEventListener('click', () => CLIMAS.signOut());
+  document.getElementById('denySignOut').addEventListener('click', () => CLIMAS.signOut());
 
   // ---- tabs ----
   document.querySelectorAll('.admin-tab').forEach(t => t.addEventListener('click', () => {
@@ -162,28 +208,39 @@
     });
   }));
 
-  // ---- data loads ----
+  // ---- orders ----
   async function loadOrders() {
     const host = document.getElementById('ordersHost');
-    const { data: orders, error } = await CLIMAS.sb
-      .from('orders').select('*, order_items(*)').order('created_at', { ascending: false });
-    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load orders</h4><p>' + error.message + '</p></div>'; return []; }
-    if (!orders.length) { host.innerHTML = '<div class="empty-state"><h4>No orders yet</h4></div>'; return []; }
+    host.innerHTML = '<div class="page-loading"><span class="spinner"></span></div>';
+    const { data, error } = await CLIMAS.sb.from('orders').select('*, order_items(*)').order('created_at', { ascending: false });
+    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load orders</h4><p>' + esc(error.message) + '</p></div>'; return; }
+    ALL_ORDERS = data || [];
+    renderOrders();
+  }
 
-    host.innerHTML = orders.map(o => {
-      const date = new Date(o.created_at).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  function renderOrders() {
+    const host = document.getElementById('ordersHost');
+    const filter = document.getElementById('orderFilter').value;
+    const list = filter === 'all' ? ALL_ORDERS : ALL_ORDERS.filter(o => o.status === filter);
+    if (!list.length) { host.innerHTML = '<div class="empty-state"><h4>No orders' + (filter !== 'all' ? ' with this status' : ' yet') + '</h4></div>'; return; }
+
+    host.innerHTML = list.map(o => {
+      const date = new Date(o.created_at).toLocaleString('en-GB', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
       const items = (o.order_items || []).map(i => i.name_snapshot + (i.qty > 1 ? ' x' + i.qty : '')).join(', ') || 'CLIMAS device';
       const opts = ORDER_STATUSES.map(s => '<option value="' + s + '"' + (s === o.status ? ' selected' : '') + '>' + STATUS_LABEL[s] + '</option>').join('');
+      const wa = waLink(o.shipping_phone);
+      const phoneHtml = esc(o.shipping_phone) + (wa ? ' · <a href="' + wa + '" target="_blank" rel="noopener" style="color:var(--safe)">WhatsApp</a>' : '');
       return '<div class="adm-order">' +
         '<div class="adm-order-top"><span class="adm-order-id">CLM-' + o.id.slice(0,6).toUpperCase() + ' · ' + date + '</span>' +
         '<span class="badge ' + STATUS_BADGE[o.status] + '">' + STATUS_LABEL[o.status] + '</span></div>' +
         '<div class="adm-order-grid">' +
-          '<div class="adm-field"><div class="k">Customer</div><div class="v">' + esc(o.shipping_name) + '<br>' + esc(o.shipping_phone) + '<br>' + esc(o.shipping_city) + '</div>' +
+          '<div class="adm-field"><div class="k">Customer</div><div class="v">' + esc(o.shipping_name) + '<br>' + phoneHtml + '<br>' + esc(o.shipping_city) + '</div>' +
           '<div class="k" style="margin-top:10px">Address</div><div class="v">' + esc(o.shipping_address) + '</div></div>' +
           '<div class="adm-field"><div class="k">Items</div><div class="v">' + esc(items) + '</div>' +
           '<div class="k" style="margin-top:10px">Total</div><div class="v">' + CLIMAS.money(o.subtotal_pesewas) + '</div></div>' +
           '<div class="adm-field"><div class="k">Set status</div>' +
-          '<select data-order="' + o.id + '">' + opts + '</select></div>' +
+          '<select data-order="' + o.id + '">' + opts + '</select>' +
+          '<button class="btn-del" data-del="' + o.id + '">Delete order</button></div>' +
         '</div></div>';
     }).join('');
 
@@ -192,19 +249,34 @@
         const id = sel.dataset.order;
         const { error } = await CLIMAS.sb.from('orders').update({ status: sel.value }).eq('id', id);
         if (error) { CLIMAS.toast('Could not update: ' + error.message, 'err'); }
-        else { CLIMAS.toast('Order updated', 'ok'); loadStats(); }
+        else { const o = ALL_ORDERS.find(x => x.id === id); if (o) o.status = sel.value; CLIMAS.toast('Order updated', 'ok'); loadStats(); renderOrders(); }
       });
     });
-    return orders;
+
+    host.querySelectorAll('button[data-del]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.del;
+        if (!confirm('Delete this order permanently? This removes it from the database and cannot be undone.')) return;
+        btn.disabled = true; btn.textContent = 'Deleting...';
+        const { error } = await CLIMAS.sb.from('orders').delete().eq('id', id);
+        if (error) { CLIMAS.toast('Could not delete: ' + error.message, 'err'); btn.disabled = false; btn.textContent = 'Delete order'; return; }
+        ALL_ORDERS = ALL_ORDERS.filter(x => x.id !== id);
+        renderOrders(); loadStats();
+        CLIMAS.toast('Order deleted', 'ok');
+      });
+    });
   }
 
+  // ---- messages ----
   async function loadMessages() {
     const host = document.getElementById('messagesHost');
+    host.innerHTML = '<div class="page-loading"><span class="spinner"></span></div>';
     const { data, error } = await CLIMAS.sb.from('contact_messages').select('*').order('created_at', { ascending: false });
-    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load messages</h4><p>' + error.message + '</p></div>'; return; }
-    if (!data.length) { host.innerHTML = '<div class="empty-state"><h4>No messages yet</h4></div>'; return; }
-    host.innerHTML = data.map(m => {
-      const date = new Date(m.created_at).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load messages</h4><p>' + esc(error.message) + '</p></div>'; return; }
+    ALL_MESSAGES = data || [];
+    if (!ALL_MESSAGES.length) { host.innerHTML = '<div class="empty-state"><h4>No messages yet</h4></div>'; return; }
+    host.innerHTML = ALL_MESSAGES.map(m => {
+      const date = new Date(m.created_at).toLocaleString('en-GB', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
       return '<div class="adm-msg">' +
         '<div class="adm-msg-top"><span class="adm-msg-from">' + esc(m.name) + ' · <a href="mailto:' + esc(m.email) + '" style="color:var(--ink-soft)">' + esc(m.email) + '</a></span>' +
         '<span class="adm-msg-meta">' + date + '</span></div>' +
@@ -213,10 +285,11 @@
     }).join('');
   }
 
+  // ---- products ----
   async function loadProducts() {
     const host = document.getElementById('productsHost');
     const { data, error } = await CLIMAS.sb.from('products').select('*').order('sort');
-    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load products</h4><p>' + error.message + '</p></div>'; return; }
+    if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load products</h4><p>' + esc(error.message) + '</p></div>'; return; }
     host.innerHTML = data.map(p => {
       const cedis = (p.price_pesewas / 100);
       const per = p.period ? (' / ' + p.period) : ' one-time';
@@ -243,6 +316,7 @@
     });
   }
 
+  // ---- stats ----
   async function loadStats() {
     const host = document.getElementById('statGrid');
     try {
@@ -251,8 +325,7 @@
       const { count: msgs } = await CLIMAS.sb.from('contact_messages').select('*', { count: 'exact', head: true });
       const all = orders || [];
       const pending = all.filter(o => o.status === 'pending_payment').length;
-      const paidPlus = all.filter(o => ['paid','shipped','delivered'].includes(o.status));
-      const revenue = paidPlus.reduce((s, o) => s + (o.subtotal_pesewas || 0), 0);
+      const revenue = all.filter(o => ['paid','shipped','delivered'].includes(o.status)).reduce((s, o) => s + (o.subtotal_pesewas || 0), 0);
       host.innerHTML =
         stat(all.length, 'Total orders') +
         stat(pending, 'Awaiting payment', true) +
@@ -264,17 +337,52 @@
     return '<div class="stat' + (accent ? ' accent' : '') + '"><div class="num">' + num + '</div><div class="lab">' + lab + '</div></div>';
   }
 
-  function esc(s) { return (s == null ? '' : String(s)).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+  // ---- CSV export ----
+  function toCSV(rows) {
+    return rows.map(r => r.map(cell => {
+      const s = (cell == null ? '' : String(cell));
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }).join(',')).join('\r\n');
+  }
+  function downloadCSV(filename, rows) {
+    const blob = new Blob(['\uFEFF' + toCSV(rows)], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  function exportOrders() {
+    if (!ALL_ORDERS.length) { CLIMAS.toast('No orders to export', 'err'); return; }
+    const rows = [['Order','Date','Status','Customer','Phone','City','Address','Items','Total (GHS)']];
+    ALL_ORDERS.forEach(o => {
+      const items = (o.order_items || []).map(i => i.name_snapshot + (i.qty > 1 ? ' x' + i.qty : '')).join('; ') || 'CLIMAS device';
+      rows.push(['CLM-' + o.id.slice(0,6).toUpperCase(), new Date(o.created_at).toLocaleString('en-GB'),
+        STATUS_LABEL[o.status] || o.status, o.shipping_name, o.shipping_phone, o.shipping_city, o.shipping_address, items, (o.subtotal_pesewas/100).toFixed(2)]);
+    });
+    downloadCSV('climas-orders-' + new Date().toISOString().slice(0,10) + '.csv', rows);
+  }
+  function exportMessages() {
+    if (!ALL_MESSAGES.length) { CLIMAS.toast('No messages to export', 'err'); return; }
+    const rows = [['Date','Name','Email','Subject','Message']];
+    ALL_MESSAGES.forEach(m => rows.push([new Date(m.created_at).toLocaleString('en-GB'), m.name, m.email, m.subject, m.message]));
+    downloadCSV('climas-messages-' + new Date().toISOString().slice(0,10) + '.csv', rows);
+  }
 
   // ---- init ----
   (async function () {
-    if (!CLIMAS.configured) { gate('loginView'); document.getElementById('loginErr').textContent = 'Backend not configured.'; document.getElementById('loginErr').classList.remove('hide'); return; }
+    if (!CLIMAS.configured) { gate('loginView'); const e = document.getElementById('loginErr'); e.textContent = 'Backend not configured.'; e.classList.remove('hide'); return; }
     const user = await CLIMAS.getUser();
     if (!user) { gate('loginView'); return; }
-    // am I admin?
     const { data: adminRow } = await CLIMAS.sb.from('admins').select('user_id').eq('user_id', user.id).maybeSingle();
     if (!adminRow) { gate('denyView'); return; }
+
     gate('dashView');
+    document.getElementById('orderFilter').addEventListener('change', renderOrders);
+    document.getElementById('refreshOrders').addEventListener('click', loadOrders);
+    document.getElementById('exportOrders').addEventListener('click', exportOrders);
+    document.getElementById('refreshMessages').addEventListener('click', loadMessages);
+    document.getElementById('exportMessages').addEventListener('click', exportMessages);
+
     loadStats();
     loadOrders();
     loadMessages();

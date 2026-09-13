@@ -179,6 +179,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   CLIMAS.renderNav();
 
+  // password show/hide eye, wired on every page
+  document.querySelectorAll('.pw-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = btn.closest('.pw-wrap') && btn.closest('.pw-wrap').querySelector('input');
+      if (!input) return;
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.classList.toggle('on', show);
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+  });
+
   if (!CLIMAS.configured) {
     // Visible, honest heads-up while the Supabase keys are still placeholders.
     console.warn('CLIMAS: Supabase not configured. Add your project URL and anon key in climas.js.');
