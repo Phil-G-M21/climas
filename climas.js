@@ -109,9 +109,15 @@ const CLIMAS = {
   async getOrders(userId) {
     if (!this.sb) return [];
     const { data, error } = await this.sb.from('orders')
-      .select('*, order_items(*)').eq('user_id', userId).order('created_at', { ascending: false });
+      .select('*, order_items(*)').eq('user_id', userId).eq('customer_hidden', false)
+      .order('created_at', { ascending: false });
     if (error) throw error;
     return data || [];
+  },
+  async hideMyOrder(id) {
+    if (!this.sb) throw new Error('Backend not configured yet.');
+    const { error } = await this.sb.rpc('hide_my_order', { order_id: id });
+    if (error) throw error;
   },
 
   /* ---- contact ---- */

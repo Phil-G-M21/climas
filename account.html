@@ -256,8 +256,26 @@
         '<span class="badge ' + st.cls + '">' + st.label + '</span></div>' +
         '<div class="order-body"><div><div class="order-items">' + items + '</div>' +
         '<div class="order-date">' + date + '</div></div>' +
-        '<div class="order-total">' + CLIMAS.money(o.subtotal_pesewas) + '</div></div></div>';
+        '<div class="order-total">' + CLIMAS.money(o.subtotal_pesewas) + '</div></div>' +
+        '<div style="margin-top:14px;text-align:right"><button class="order-remove" data-remove="' + o.id + '">Remove from my orders</button></div>' +
+        '</div>';
     }).join('') + '</div>';
+
+    host.querySelectorAll('button[data-remove]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.remove;
+        if (!confirm('Remove this order from your history? This only clears it from your view.')) return;
+        btn.disabled = true; btn.textContent = 'Removing...';
+        try {
+          await CLIMAS.hideMyOrder(id);
+          btn.closest('.order-card').remove();
+          if (!host.querySelector('.order-card')) renderOrders([]);
+        } catch (e) {
+          CLIMAS.toast(e.message || 'Could not remove', 'err');
+          btn.disabled = false; btn.textContent = 'Remove from my orders';
+        }
+      });
+    });
   }
 
   async function loadAccount(user) {

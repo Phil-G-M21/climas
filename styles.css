@@ -272,6 +272,9 @@ h2.sec-title { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.08; letter-sp
 
 /* ── ORDERS TABLE ── */
 .orders-list { display: grid; gap: 14px; }
+.order-remove { background: none; border: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-family: 'Inter'; }
+.order-remove:hover { border-color: var(--danger); color: var(--danger); }
+.order-remove:disabled { opacity: .6; cursor: default; }
 .order-card { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; }
 .order-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
 .order-id { font-family: 'Space Grotesk'; font-size: 14px; color: var(--ink-soft); }

@@ -83,7 +83,7 @@
       <h2>Admin sign in</h2>
       <p class="sub">Sign in with your admin account.</p>
       <div class="notice notice-err hide" id="loginErr"></div>
-      <div class="field"><label>Email</label><input type="email" id="admEmail" placeholder="admin@climas.com"></div>
+      <div class="field"><label>Email</label><input type="email" id="admEmail" placeholder="Email" autocomplete="off"></div>
       <div class="field"><label>Password</label>
         <div class="pw-wrap">
           <input type="password" id="admPass" placeholder="Your password">
@@ -214,7 +214,7 @@
     host.innerHTML = '<div class="page-loading"><span class="spinner"></span></div>';
     const { data, error } = await CLIMAS.sb.from('orders').select('*, order_items(*)').order('created_at', { ascending: false });
     if (error) { host.innerHTML = '<div class="empty-state"><h4>Could not load orders</h4><p>' + esc(error.message) + '</p></div>'; return; }
-    ALL_ORDERS = data || [];
+    ALL_ORDERS = (data || []).filter(o => !o.admin_hidden);
     renderOrders();
   }
 
@@ -240,7 +240,7 @@
           '<div class="k" style="margin-top:10px">Total</div><div class="v">' + CLIMAS.money(o.subtotal_pesewas) + '</div></div>' +
           '<div class="adm-field"><div class="k">Set status</div>' +
           '<select data-order="' + o.id + '">' + opts + '</select>' +
-          '<button class="btn-del" data-del="' + o.id + '">Delete order</button></div>' +
+          '<button class="btn-del" data-del="' + o.id + '">Remove from list</button></div>' +
         '</div></div>';
     }).join('');
 
@@ -256,13 +256,13 @@
     host.querySelectorAll('button[data-del]').forEach(btn => {
       btn.addEventListener('click', async () => {
         const id = btn.dataset.del;
-        if (!confirm('Delete this order permanently? This removes it from the database and cannot be undone.')) return;
-        btn.disabled = true; btn.textContent = 'Deleting...';
-        const { error } = await CLIMAS.sb.from('orders').delete().eq('id', id);
-        if (error) { CLIMAS.toast('Could not delete: ' + error.message, 'err'); btn.disabled = false; btn.textContent = 'Delete order'; return; }
+        if (!confirm('Remove this order from your admin list? The customer keeps their own copy. This only clears it from your view.')) return;
+        btn.disabled = true; btn.textContent = 'Removing...';
+        const { error } = await CLIMAS.sb.from('orders').update({ admin_hidden: true }).eq('id', id);
+        if (error) { CLIMAS.toast('Could not remove: ' + error.message, 'err'); btn.disabled = false; btn.textContent = 'Remove from list'; return; }
         ALL_ORDERS = ALL_ORDERS.filter(x => x.id !== id);
         renderOrders(); loadStats();
-        CLIMAS.toast('Order deleted', 'ok');
+        CLIMAS.toast('Removed from your list', 'ok');
       });
     });
   }
@@ -320,10 +320,10 @@
   async function loadStats() {
     const host = document.getElementById('statGrid');
     try {
-      const { data: orders } = await CLIMAS.sb.from('orders').select('status, subtotal_pesewas');
+      const { data: orders } = await CLIMAS.sb.from('orders').select('status, subtotal_pesewas, admin_hidden');
       const { count: users } = await CLIMAS.sb.from('profiles').select('*', { count: 'exact', head: true });
       const { count: msgs } = await CLIMAS.sb.from('contact_messages').select('*', { count: 'exact', head: true });
-      const all = orders || [];
+      const all = (orders || []).filter(o => !o.admin_hidden);
       const pending = all.filter(o => o.status === 'pending_payment').length;
       const revenue = all.filter(o => ['paid','shipped','delivered'].includes(o.status)).reduce((s, o) => s + (o.subtotal_pesewas || 0), 0);
       host.innerHTML =
