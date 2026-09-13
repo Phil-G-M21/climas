@@ -96,12 +96,11 @@
         <div class="summary">
           <h3>Order summary</h3>
           <div class="summary-row"><span>CLIMAS device</span><span id="sumDevice">GH&#8373;400</span></div>
-          <div class="summary-row"><span id="sumPlanName">Connect (monthly)</span><span class="muted">30 days free</span></div>
-          <div class="summary-row"><span class="muted">After trial</span><span class="muted" id="sumPlanPrice">GH&#8373;25/mo</span></div>
+          <div class="summary-row"><span>CLIMAS Connect</span><span class="muted">First 30 days free</span></div>
           <div class="summary-row total"><span>Due now</span><span id="sumTotal">GH&#8373;400</span></div>
           <button class="btn btn-solid btn-lg btn-block" id="placeBtn" style="margin-top:22px">Place order</button>
           <p style="font-size:12.5px;color:var(--ink-mute);margin-top:14px;line-height:1.5">
-            Placing an order does not charge you online. We contact you to confirm and arrange payment. Online payment is coming soon.
+            You are paying for the device only. Your free month of Connect starts when you set it up in the app, and you choose a plan there when it ends. Placing an order does not charge you online yet, we contact you to confirm and arrange payment.
           </p>
         </div>
       </div>
@@ -131,11 +130,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="climas.js"></script>
 <script>
-  const PLAN_LABELS = {
-    'connect-monthly': { name: 'Connect (monthly)', per: 'mo' },
-    'connect-yearly':  { name: 'Connect (yearly)',  per: 'yr' }
-  };
-
   let PRODUCTS = [];
   let CART = null;
   let USER = null;
@@ -189,15 +183,11 @@
   })();
 
   function renderSummary() {
-    const label = PLAN_LABELS[CART.plan] || PLAN_LABELS['connect-monthly'];
     const devP = priceOf('climas-device');
-    const planP = priceOf(CART.plan);
     if (devP != null) {
       document.getElementById('sumDevice').textContent = CLIMAS.money(devP);
       document.getElementById('sumTotal').textContent = CLIMAS.money(devP);
     }
-    document.getElementById('sumPlanName').textContent = label.name;
-    if (planP != null) document.getElementById('sumPlanPrice').textContent = CLIMAS.money(planP) + '/' + label.per;
   }
 
   document.getElementById('placeBtn')?.addEventListener('click', async () => {
@@ -225,7 +215,6 @@
       const order = {
         user_id: USER.id,
         status: 'pending_payment',
-        plan_choice: CART.plan,
         subtotal_pesewas: devP,
         shipping_name: name,
         shipping_phone: phone,

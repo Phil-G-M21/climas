@@ -84,23 +84,12 @@
         <li><span class="chk"></span> Set up from your phone using the CLIMAS app</li>
       </ul>
 
-      <h3 style="font-family:'Space Grotesk';font-size:16px;margin:30px 0 4px">Choose your Connect plan</h3>
-      <p style="font-size:13.5px;color:var(--ink-mute);margin-bottom:8px">Free for the first 30 days either way. You are not charged until the trial ends.</p>
-
-      <div class="plan-pick" id="planPick">
-        <div class="plan-opt sel" data-plan="connect-monthly">
-          <span class="plan-radio"></span>
-          <div><div class="pname">Monthly</div><div class="pdesc">Pay month to month, cancel anytime</div></div>
-          <div class="pprice" data-plan-price="connect-monthly">GH&#8373;25/mo</div>
-        </div>
-        <div class="plan-opt" data-plan="connect-yearly">
-          <span class="plan-radio"></span>
-          <div><div class="pname">Yearly</div><div class="pdesc">Two months saved versus monthly</div></div>
-          <div class="pprice" data-plan-price="connect-yearly">GH&#8373;250/yr</div>
-        </div>
+      <div class="sub-info">
+        <div class="sub-info-head">After your free month</div>
+        <p>Your first 30 days of CLIMAS Connect start when you set the device up in the app, free and automatic. After that, keep the connected features for <strong id="subMonthly">GH&#8373;25</strong> a month or <strong id="subYearly">GH&#8373;250</strong> a year. You choose your plan in the app when the month ends, not now.</p>
       </div>
 
-      <button class="btn btn-solid btn-lg btn-block" id="buyBtn" style="margin-top:14px">Continue to checkout</button>
+      <button class="btn btn-solid btn-lg btn-block" id="buyBtn" style="margin-top:22px">Buy CLIMAS</button>
       <p style="font-size:13px;color:var(--ink-mute);text-align:center;margin-top:14px">
         The local alarm always works free. A plan only adds calls, SMS and the dashboard.
       </p>
@@ -132,17 +121,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="climas.js"></script>
 <script>
-  let PLAN = 'connect-monthly';
-
-  // plan selection
-  document.getElementById('planPick').addEventListener('click', (e) => {
-    const opt = e.target.closest('.plan-opt');
-    if (!opt) return;
-    document.querySelectorAll('.plan-opt').forEach(o => o.classList.remove('sel'));
-    opt.classList.add('sel');
-    PLAN = opt.dataset.plan;
-  });
-
   // load live prices from Supabase products (falls back to page defaults if not configured)
   (async function loadPrices() {
     if (!CLIMAS.configured) return;
@@ -150,16 +128,16 @@
       const products = await CLIMAS.getProducts();
       const device = products.find(p => p.slug === 'climas-device');
       if (device) document.getElementById('devicePrice').textContent = CLIMAS.money(device.price_pesewas);
-      products.filter(p => p.kind === 'plan').forEach(p => {
-        const el = document.querySelector('[data-plan-price="' + p.slug + '"]');
-        if (el) el.textContent = CLIMAS.money(p.price_pesewas) + '/' + (p.period === 'year' ? 'yr' : 'mo');
-      });
+      const m = products.find(p => p.slug === 'connect-monthly');
+      const y = products.find(p => p.slug === 'connect-yearly');
+      if (m) document.getElementById('subMonthly').textContent = CLIMAS.money(m.price_pesewas);
+      if (y) document.getElementById('subYearly').textContent = CLIMAS.money(y.price_pesewas);
     } catch (e) { console.warn(e); }
   })();
 
-  // continue to checkout
+  // buy: device only, no plan chosen here
   document.getElementById('buyBtn').addEventListener('click', () => {
-    CLIMAS.setCart({ device: 'climas-device', plan: PLAN, qty: 1 });
+    CLIMAS.setCart({ device: 'climas-device', qty: 1 });
     location.href = 'checkout.html';
   });
 </script>

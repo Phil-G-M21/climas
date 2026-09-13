@@ -242,6 +242,12 @@ h2.sec-title { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.08; letter-sp
 .plan-opt .pdesc { font-size: 13.5px; color: var(--ink-soft); }
 .plan-opt .pprice { margin-left: auto; font-family: 'Space Grotesk'; font-weight: 600; font-size: 15px; white-space: nowrap; }
 
+/* ── subscription info box (shop) ── */
+.sub-info { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 20px 22px; margin: 28px 0 4px; }
+.sub-info-head { font-family: 'Space Grotesk'; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.sub-info p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.sub-info strong { color: var(--ink); font-weight: 600; }
+
 /* ── CART / ORDER SUMMARY ── */
 .summary { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 26px; }
 .summary h3 { font-size: 17px; margin-bottom: 20px; }
