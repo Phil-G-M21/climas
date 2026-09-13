@@ -51,7 +51,7 @@ img { max-width: 100%; display: block; }
 /* ── NAV ── */
 .nav {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(19,22,26,.82);
+  background: rgba(19,22,26,.94);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line-soft);
 }
@@ -92,7 +92,8 @@ img { max-width: 100%; display: block; }
 .mobile-menu.open { transform: translateY(0); }
 .mobile-menu > a { display: block; padding: 13px 0; font-size: 17px; color: var(--ink-soft); border-bottom: 1px solid var(--line-soft); }
 .mobile-menu > a:last-of-type { border-bottom: none; }
-.mobile-menu .mm-cta { margin-top: 18px; display: flex; gap: 12px; }
+.mobile-menu .mm-cta { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+.mobile-menu .mm-cta .btn { width: 100%; padding: 14px; font-size: 15.5px; }
 
 /* ── HERO ── */
 .hero { padding: 74px 0 80px; }
