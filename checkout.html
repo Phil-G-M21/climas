@@ -76,15 +76,9 @@
           <input type="tel" id="shipPhone" placeholder="0XX XXX XXXX">
           <div class="hint">We use this to confirm your order and for delivery.</div>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label>City or town</label>
-            <input type="text" id="shipCity" placeholder="Kumasi">
-          </div>
-          <div class="field">
-            <label>Emergency contact phone</label>
-            <input type="tel" id="emergPhone" placeholder="Who CLIMAS should call">
-          </div>
+        <div class="field">
+          <label>City or town</label>
+          <input type="text" id="shipCity" placeholder="Kumasi">
         </div>
         <div class="field">
           <label>Delivery address</label>
@@ -175,7 +169,6 @@
         if (prof.full_name) document.getElementById('shipName').value = prof.full_name;
         if (prof.phone) document.getElementById('shipPhone').value = prof.phone;
         if (prof.city) document.getElementById('shipCity').value = prof.city;
-        if (prof.emergency_phone) document.getElementById('emergPhone').value = prof.emergency_phone;
       }
     } catch (e) {}
 
@@ -197,7 +190,6 @@
     const name = document.getElementById('shipName').value.trim();
     const phone = document.getElementById('shipPhone').value.trim();
     const city = document.getElementById('shipCity').value.trim();
-    const emerg = document.getElementById('emergPhone').value.trim();
     const address = document.getElementById('shipAddress').value.trim();
 
     if (!name || !phone || !address) {
@@ -230,8 +222,8 @@
 
       const created = await CLIMAS.createOrder(order, items);
 
-      // save emergency contact to profile for later app setup
-      if (emerg) { try { await CLIMAS.updateProfile(USER.id, { emergency_phone: emerg, phone, city }); } catch (e) {} }
+      // save contact details to profile for next time
+      try { await CLIMAS.updateProfile(USER.id, { phone, city }); } catch (e) {}
 
       CLIMAS.clearCart();
       document.getElementById('orderRef').textContent = 'CLM-' + created.id.slice(0, 6).toUpperCase();

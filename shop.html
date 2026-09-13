@@ -86,12 +86,17 @@
 
       <div class="sub-info">
         <div class="sub-info-head">After your free month</div>
-        <p>Your first 30 days of CLIMAS Connect start when you set the device up in the app, free and automatic. After that, keep the connected features for <strong id="subMonthly">GH&#8373;25</strong> a month or <strong id="subYearly">GH&#8373;250</strong> a year. You choose your plan in the app when the month ends, not now.</p>
+        <p>Your first 30 days of Connect start when you set the device up in the app, free and automatic. After that you choose a plan in the app, not now:</p>
+        <ul class="flist" style="margin-top:12px">
+          <li><span class="chk"></span> <strong>Basic, <span data-price="connect-basic">GH&#8373;18</span> a month.</strong> SMS alerts and the live dashboard.</li>
+          <li><span class="chk"></span> <strong>Pro, <span data-price="connect-pro">GH&#8373;25</span> a month.</strong> Everything in Basic plus the phone call, multiple contacts and multiple devices.</li>
+        </ul>
+        <p style="margin-top:12px">A yearly plan comes at a discount, also chosen in the app.</p>
       </div>
 
       <button class="btn btn-solid btn-lg btn-block" id="buyBtn" style="margin-top:22px">Buy CLIMAS</button>
       <p style="font-size:13px;color:var(--ink-mute);text-align:center;margin-top:14px">
-        The local alarm always works free. A plan only adds calls, SMS and the dashboard.
+        The local alarm always works free. A plan only adds alerts and the dashboard.
       </p>
     </div>
 
@@ -121,17 +126,18 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="climas.js"></script>
 <script>
-  // load live prices from Supabase products (falls back to page defaults if not configured)
+  // load live prices from Supabase products
   (async function loadPrices() {
     if (!CLIMAS.configured) return;
     try {
       const products = await CLIMAS.getProducts();
       const device = products.find(p => p.slug === 'climas-device');
       if (device) document.getElementById('devicePrice').textContent = CLIMAS.money(device.price_pesewas);
-      const m = products.find(p => p.slug === 'connect-monthly');
-      const y = products.find(p => p.slug === 'connect-yearly');
-      if (m) document.getElementById('subMonthly').textContent = CLIMAS.money(m.price_pesewas);
-      if (y) document.getElementById('subYearly').textContent = CLIMAS.money(y.price_pesewas);
+      products.forEach(p => {
+        document.querySelectorAll('[data-price="' + p.slug + '"]').forEach(el => {
+          el.textContent = CLIMAS.money(p.price_pesewas);
+        });
+      });
     } catch (e) { console.warn(e); }
   })();
 

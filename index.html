@@ -178,34 +178,46 @@
     <div class="sec-head">
       <div class="sec-kick">Pricing</div>
       <h2 class="sec-title">Buy the device once. The alarm is yours to keep.</h2>
-      <p class="sec-lead">Every device comes with 30 days of the smart features free. After that, keep them for a small monthly plan, or keep just the local alarm at no cost.</p>
+      <p class="sec-lead">You pay for the device on this site. Every device starts with 30 days of the smart features free. After that you choose a plan, and that happens in the app.</p>
     </div>
+
     <div class="price-wrap">
       <div class="price-card price-device">
         <h3>CLIMAS device</h3>
-        <div class="amount"><span class="big">GH&#8373;400</span> <span class="per">one-time</span></div>
+        <div class="amount"><span class="big" data-price="climas-device">GH&#8373;400</span> <span class="per">one-time</span></div>
         <div class="price-desc">The full device with both gas sensors, screen, loud alarm and backup battery. Yours to keep.</div>
-        <div class="trial-line"><span class="chk"></span> Includes 30 days of CLIMAS Connect free</div>
+        <div class="trial-line"><span class="chk"></span> Starts with 30 days of Connect free</div>
         <ul class="flist">
           <li><span class="chk"></span> Ships assembled and tested</li>
-          <li><span class="chk"></span> Set up in minutes from your phone</li>
+          <li><span class="chk"></span> Set up in minutes from the app</li>
           <li><span class="chk"></span> Local alarm works free, forever</li>
         </ul>
         <a class="btn btn-solid btn-block" href="shop.html">Buy CLIMAS</a>
       </div>
-      <div class="price-card price-sub">
-        <h3>CLIMAS Connect</h3>
-        <div class="amount"><span class="big">GH&#8373;25</span> <span class="per">/ month</span></div>
-        <div class="price-desc">The connected features: emergency calls, SMS alerts, and the live dashboard. Starts free for 30 days with every device.</div>
-        <div class="trial-line"><span class="chk"></span> Or GH&#8373;250 per year, two months saved</div>
+      <div class="price-card price-device">
+        <h3>Connect Basic</h3>
+        <div class="amount"><span class="big" data-price="connect-basic">GH&#8373;18</span> <span class="per">/ month</span></div>
+        <div class="price-desc">Get warned by text, and see your readings any time. No automatic call.</div>
         <ul class="flist">
-          <li><span class="chk"></span> Automatic call to your phone on danger</li>
-          <li><span class="chk"></span> SMS to your emergency contacts</li>
-          <li><span class="chk"></span> Live dashboard and reading history</li>
+          <li><span class="chk"></span> SMS alert when gas is detected</li>
+          <li><span class="chk"></span> Live dashboard with readings and history</li>
         </ul>
-        <a class="btn btn-line btn-block" href="shop.html">Start with a device</a>
+        <div class="plan-app-note">Chosen in the app after your free month</div>
+      </div>
+      <div class="price-card price-sub">
+        <h3>Connect Pro</h3>
+        <div class="amount"><span class="big" data-price="connect-pro">GH&#8373;25</span> <span class="per">/ month</span></div>
+        <div class="price-desc">Everything in Basic, plus the phone call and support for a whole household.</div>
+        <ul class="flist">
+          <li><span class="chk"></span> Everything in Basic</li>
+          <li><span class="chk"></span> Automatic call to your phone on danger</li>
+          <li><span class="chk"></span> More than one emergency contact</li>
+          <li><span class="chk"></span> Watch several devices</li>
+        </ul>
+        <div class="plan-app-note">Chosen in the app after your free month</div>
       </div>
     </div>
+    <p class="price-foot">Prefer to pay less over time? A yearly plan comes at a discount, chosen in the app. The local alarm on the device always works free, with or without a plan.</p>
   </div>
 </section>
 
@@ -286,6 +298,19 @@
     }
     tick();
     setInterval(tick, 2600);
+  })();
+
+  // keep home prices in sync with the products table
+  (async function syncPrices() {
+    if (!CLIMAS.configured) return;
+    try {
+      const products = await CLIMAS.getProducts();
+      products.forEach(p => {
+        document.querySelectorAll('[data-price="' + p.slug + '"]').forEach(el => {
+          el.textContent = CLIMAS.money(p.price_pesewas);
+        });
+      });
+    } catch (e) { console.warn(e); }
   })();
 </script>
 </body>

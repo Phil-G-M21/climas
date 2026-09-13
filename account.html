@@ -99,14 +99,14 @@
         <!-- profile -->
         <div id="panel-profile" style="display:none">
           <h2>Profile</h2>
-          <p class="psub">This is used for delivery and, later, for the phone your device calls in an emergency.</p>
+          <p class="psub">Your details for delivery and contact.</p>
           <div class="notice notice-ok hide" id="profOk"></div>
           <div style="max-width:460px">
             <div class="field"><label>Full name</label><input type="text" id="pfName"></div>
             <div class="field"><label>Phone number</label><input type="tel" id="pfPhone"></div>
             <div class="field"><label>City or town</label><input type="text" id="pfCity"></div>
-            <div class="field"><label>Emergency contact phone</label><input type="tel" id="pfEmerg"><div class="hint">The number CLIMAS calls when it detects danger.</div></div>
             <button class="btn btn-solid" id="saveProfBtn">Save changes</button>
+            <p style="font-size:13px;color:var(--ink-mute);margin-top:18px;line-height:1.55">The emergency number your device calls is set in the CLIMAS app, where you can change it any time and it updates on the device.</p>
           </div>
         </div>
 
@@ -254,7 +254,6 @@
       document.getElementById('pfName').value = prof.full_name || '';
       document.getElementById('pfPhone').value = prof.phone || '';
       document.getElementById('pfCity').value = prof.city || '';
-      document.getElementById('pfEmerg').value = prof.emergency_phone || '';
     }
 
     document.getElementById('saveProfBtn').addEventListener('click', async () => {
@@ -264,8 +263,7 @@
         await CLIMAS.updateProfile(user.id, {
           full_name: document.getElementById('pfName').value.trim(),
           phone: document.getElementById('pfPhone').value.trim(),
-          city: document.getElementById('pfCity').value.trim(),
-          emergency_phone: document.getElementById('pfEmerg').value.trim()
+          city: document.getElementById('pfCity').value.trim()
         });
         const ok = document.getElementById('profOk');
         ok.textContent = 'Saved.'; ok.classList.remove('hide');
