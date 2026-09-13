@@ -11,9 +11,20 @@
 const SUPABASE_URL      = 'https://fobuhwuanpumpuolbspk.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvYnVod3VhbnB1bXB1b2xic3BrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyOTg5MzcsImV4cCI6MjEwNDg3NDkzN30.uRfbHxJWxWyQjSplWhVKnkxATBNGRvXkEEcr9i5g5bM';
 
-/* ── 2. CLIENT ── */
+/* ── 2. CLIENT ──
+   The admin page keeps its own separate login session, so signing
+   into admin does not log you out of a customer account in the same
+   browser (and the other way round). Store and admin never share a
+   session slot.                                                      */
+const _isAdminPage = /(^|\/)admin\.html$/.test(location.pathname);
 const _sb = (window.supabase && SUPABASE_URL.indexOf('YOUR-PROJECT') === -1)
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        storageKey: _isAdminPage ? 'climas-admin-auth' : 'climas-store-auth',
+        persistSession: true,
+        autoRefreshToken: true
+      }
+    })
   : null;
 
 const CLIMAS = {
