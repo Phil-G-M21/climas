@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout — CLIMAS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%234fa87b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-ghost" data-nav="signin" href="account.html">Sign in</a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html#how">How it works</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <div class="mm-cta">
+    <a class="btn btn-line btn-block" data-nav="signin" href="account.html">Sign in</a>
+  </div>
+</div>
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>Checkout</h1>
+    <p>Confirm your order details. You will not be charged online yet, we confirm your order and arrange payment after.</p>
+  </div>
+</div>
+
+<div class="wrap" style="padding:40px 24px 80px">
+
+  <!-- empty cart -->
+  <div id="emptyCart" class="empty-state" style="display:none;max-width:520px;margin:20px auto">
+    <h4>Your cart is empty</h4>
+    <p style="margin-bottom:22px">Add a CLIMAS device to get started.</p>
+    <a class="btn btn-solid" href="shop.html">Go to shop</a>
+  </div>
+
+  <!-- signed-out prompt -->
+  <div id="authPrompt" class="empty-state" style="display:none;max-width:520px;margin:20px auto">
+    <h4>Sign in to place your order</h4>
+    <p style="margin-bottom:22px">Create an account or sign in so we can track your order and set up your device.</p>
+    <a class="btn btn-solid" id="goSignIn" href="account.html">Sign in or create account</a>
+  </div>
+
+  <!-- checkout body -->
+  <div id="checkoutBody" style="display:none">
+    <div class="shop-grid" style="padding:0">
+      <div>
+        <h2 style="font-family:'Space Grotesk';font-size:20px;margin-bottom:20px">Shipping details</h2>
+        <div class="notice notice-err hide" id="coErr"></div>
+        <div class="field">
+          <label>Full name</label>
+          <input type="text" id="shipName" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label>Phone number</label>
+          <input type="tel" id="shipPhone" placeholder="0XX XXX XXXX">
+          <div class="hint">We use this to confirm your order and for delivery.</div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>City or town</label>
+            <input type="text" id="shipCity" placeholder="Kumasi">
+          </div>
+          <div class="field">
+            <label>Emergency contact phone</label>
+            <input type="tel" id="emergPhone" placeholder="Who CLIMAS should call">
+          </div>
+        </div>
+        <div class="field">
+          <label>Delivery address</label>
+          <textarea id="shipAddress" placeholder="House number, street, landmark, area"></textarea>
+        </div>
+      </div>
+
+      <div>
+        <div class="summary">
+          <h3>Order summary</h3>
+          <div class="summary-row"><span>CLIMAS device</span><span id="sumDevice">GH&#8373;400</span></div>
+          <div class="summary-row"><span id="sumPlanName">Connect (monthly)</span><span class="muted">30 days free</span></div>
+          <div class="summary-row"><span class="muted">After trial</span><span class="muted" id="sumPlanPrice">GH&#8373;25/mo</span></div>
+          <div class="summary-row total"><span>Due now</span><span id="sumTotal">GH&#8373;400</span></div>
+          <button class="btn btn-solid btn-lg btn-block" id="placeBtn" style="margin-top:22px">Place order</button>
+          <p style="font-size:12.5px;color:var(--ink-mute);margin-top:14px;line-height:1.5">
+            Placing an order does not charge you online. We contact you to confirm and arrange payment. Online payment is coming soon.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- success -->
+  <div id="orderSuccess" style="display:none;max-width:560px;margin:20px auto;text-align:center">
+    <div style="width:60px;height:60px;border-radius:50%;background:rgba(79,168,123,.14);display:flex;align-items:center;justify-content:center;margin:0 auto 22px">
+      <span class="chk" style="width:24px;height:24px"></span>
+    </div>
+    <h2 style="font-family:'Space Grotesk';font-size:26px;margin-bottom:12px">Order placed</h2>
+    <p style="color:var(--ink-soft);font-size:15.5px;margin-bottom:8px">Your order reference is</p>
+    <p style="font-family:'Space Grotesk';font-size:20px;font-weight:600;margin-bottom:24px" id="orderRef">CLM-000000</p>
+    <p style="color:var(--ink-soft);font-size:15px;line-height:1.6;margin-bottom:30px">
+      We will reach out on your phone number to confirm and arrange payment and delivery. You can see this order any time in your account.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-solid" href="account.html">View my orders</a>
+      <a class="btn btn-line" href="index.html">Back to home</a>
+    </div>
+  </div>
+
+  <div id="coLoading" class="page-loading"><span class="spinner"></span></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="climas.js"></script>
+<script>
+  const PLAN_LABELS = {
+    'connect-monthly': { name: 'Connect (monthly)', per: 'mo' },
+    'connect-yearly':  { name: 'Connect (yearly)',  per: 'yr' }
+  };
+
+  let PRODUCTS = [];
+  let CART = null;
+  let USER = null;
+
+  function show(id) {
+    ['emptyCart','authPrompt','checkoutBody','orderSuccess','coLoading'].forEach(x => {
+      document.getElementById(x).style.display = (x === id) ? (x === 'checkoutBody' ? 'block' : 'block') : 'none';
+    });
+  }
+
+  function priceOf(slug) {
+    const p = PRODUCTS.find(x => x.slug === slug);
+    return p ? p.price_pesewas : null;
+  }
+
+  (async function init() {
+    CART = CLIMAS.getCart();
+    if (!CART) { show('emptyCart'); return; }
+
+    if (!CLIMAS.configured) {
+      // Backend not wired yet: still render the summary so the flow is visible.
+      renderSummary();
+      USER = null;
+      show('authPrompt');
+      document.getElementById('goSignIn').href = 'account.html?next=checkout.html';
+      return;
+    }
+
+    USER = await CLIMAS.getUser();
+    if (!USER) {
+      show('authPrompt');
+      document.getElementById('goSignIn').href = 'account.html?next=checkout.html';
+      return;
+    }
+
+    try { PRODUCTS = await CLIMAS.getProducts(); } catch (e) { PRODUCTS = []; }
+    renderSummary();
+
+    // prefill from profile
+    try {
+      const prof = await CLIMAS.getProfile(USER.id);
+      if (prof) {
+        if (prof.full_name) document.getElementById('shipName').value = prof.full_name;
+        if (prof.phone) document.getElementById('shipPhone').value = prof.phone;
+        if (prof.city) document.getElementById('shipCity').value = prof.city;
+        if (prof.emergency_phone) document.getElementById('emergPhone').value = prof.emergency_phone;
+      }
+    } catch (e) {}
+
+    show('checkoutBody');
+  })();
+
+  function renderSummary() {
+    const label = PLAN_LABELS[CART.plan] || PLAN_LABELS['connect-monthly'];
+    const devP = priceOf('climas-device');
+    const planP = priceOf(CART.plan);
+    if (devP != null) {
+      document.getElementById('sumDevice').textContent = CLIMAS.money(devP);
+      document.getElementById('sumTotal').textContent = CLIMAS.money(devP);
+    }
+    document.getElementById('sumPlanName').textContent = label.name;
+    if (planP != null) document.getElementById('sumPlanPrice').textContent = CLIMAS.money(planP) + '/' + label.per;
+  }
+
+  document.getElementById('placeBtn')?.addEventListener('click', async () => {
+    const err = document.getElementById('coErr');
+    err.classList.add('hide');
+
+    const name = document.getElementById('shipName').value.trim();
+    const phone = document.getElementById('shipPhone').value.trim();
+    const city = document.getElementById('shipCity').value.trim();
+    const emerg = document.getElementById('emergPhone').value.trim();
+    const address = document.getElementById('shipAddress').value.trim();
+
+    if (!name || !phone || !address) {
+      err.textContent = 'Please fill in your name, phone number, and delivery address.';
+      err.classList.remove('hide');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const btn = document.getElementById('placeBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Placing order';
+
+    try {
+      const devP = priceOf('climas-device') || 0;
+      const order = {
+        user_id: USER.id,
+        status: 'pending_payment',
+        plan_choice: CART.plan,
+        subtotal_pesewas: devP,
+        shipping_name: name,
+        shipping_phone: phone,
+        shipping_city: city,
+        shipping_address: address
+      };
+      const items = [{
+        product_slug: 'climas-device',
+        name_snapshot: 'CLIMAS device',
+        price_pesewas: devP,
+        qty: CART.qty || 1
+      }];
+
+      const created = await CLIMAS.createOrder(order, items);
+
+      // save emergency contact to profile for later app setup
+      if (emerg) { try { await CLIMAS.updateProfile(USER.id, { emergency_phone: emerg, phone, city }); } catch (e) {} }
+
+      CLIMAS.clearCart();
+      document.getElementById('orderRef').textContent = 'CLM-' + created.id.slice(0, 6).toUpperCase();
+      show('orderSuccess');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      err.textContent = e.message || 'Something went wrong placing your order. Please try again.';
+      err.classList.remove('hide');
+      btn.disabled = false; btn.textContent = 'Place order';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+</script>
+</body>
+</html>

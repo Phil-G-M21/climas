@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop — CLIMAS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%234fa87b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-ghost" data-nav="signin" href="account.html">Sign in</a>
+      <a class="nav-cart" href="checkout.html" aria-label="Cart">Cart<span class="count empty" data-cart-count>0</span></a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html#how">How it works</a>
+  <a href="index.html#pricing">Pricing</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <div class="mm-cta">
+    <a class="btn btn-line btn-block" data-nav="signin" href="account.html">Sign in</a>
+    <a class="btn btn-solid btn-block" href="checkout.html">Cart</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="shop-grid">
+
+    <!-- product visual -->
+    <div class="product-visual">
+      <div class="device">
+        <div class="device-top">
+          <span class="device-name">CLIMAS</span>
+          <span class="device-live"><span class="ld"></span> DEMO</span>
+        </div>
+        <div class="screen">
+          <div class="screen-row">
+            <div class="metric"><div class="metric-label">Temperature</div><div class="metric-val">28.4<small>&deg;C</small></div></div>
+            <div class="metric"><div class="metric-label">Humidity</div><div class="metric-val">61<small>%</small></div></div>
+          </div>
+          <div class="gasbar-wrap">
+            <div class="gasbar-head"><span class="lab">Gas level</span><span class="status-pill status-safe">SAFE</span></div>
+            <div class="track"><div class="fill" style="width:20%"></div></div>
+          </div>
+        </div>
+        <div class="device-foot"><span>All clear · monitoring</span><span>climas.live</span></div>
+      </div>
+    </div>
+
+    <!-- product info -->
+    <div class="product-info">
+      <h1>CLIMAS device</h1>
+      <p class="tagline">Gas and air safety monitor for your home. LPG and carbon monoxide sensing, loud alarm, screen, and a battery that keeps it running through dumsor.</p>
+
+      <div class="product-price">
+        <span class="big" id="devicePrice">GH&#8373;400</span>
+        <span class="per">one-time</span>
+      </div>
+      <div class="trial-line" style="margin-top:16px"><span class="chk"></span> Every device includes 30 days of CLIMAS Connect free</div>
+
+      <ul class="flist" style="margin:8px 0 4px">
+        <li><span class="chk"></span> Figaro TGS2610 LPG sensor and Winsen ZE07-CO carbon monoxide sensor</li>
+        <li><span class="chk"></span> Loud alarm and flashing light, works with no wifi and no plan</li>
+        <li><span class="chk"></span> Mains powered with battery backup for outages</li>
+        <li><span class="chk"></span> Set up from your phone using the CLIMAS app</li>
+      </ul>
+
+      <h3 style="font-family:'Space Grotesk';font-size:16px;margin:30px 0 4px">Choose your Connect plan</h3>
+      <p style="font-size:13.5px;color:var(--ink-mute);margin-bottom:8px">Free for the first 30 days either way. You are not charged until the trial ends.</p>
+
+      <div class="plan-pick" id="planPick">
+        <div class="plan-opt sel" data-plan="connect-monthly">
+          <span class="plan-radio"></span>
+          <div><div class="pname">Monthly</div><div class="pdesc">Pay month to month, cancel anytime</div></div>
+          <div class="pprice" data-plan-price="connect-monthly">GH&#8373;25/mo</div>
+        </div>
+        <div class="plan-opt" data-plan="connect-yearly">
+          <span class="plan-radio"></span>
+          <div><div class="pname">Yearly</div><div class="pdesc">Two months saved versus monthly</div></div>
+          <div class="pprice" data-plan-price="connect-yearly">GH&#8373;250/yr</div>
+        </div>
+      </div>
+
+      <button class="btn btn-solid btn-lg btn-block" id="buyBtn" style="margin-top:14px">Continue to checkout</button>
+      <p style="font-size:13px;color:var(--ink-mute);text-align:center;margin-top:14px">
+        The local alarm always works free. A plan only adds calls, SMS and the dashboard.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+        <p>Gas and air safety for the Ghanaian home. Built in Kumasi.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h4>Product</h4><a href="index.html#how">How it works</a><a href="index.html#pricing">Pricing</a><a href="shop.html">Buy CLIMAS</a></div>
+        <div class="foot-col"><h4>Account</h4><a data-nav="signin" href="account.html">Sign in</a><a href="account.html">Your orders</a></div>
+        <div class="foot-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 CLIMAS. All rights reserved.</span>
+      <span>CLIMAS is an early-warning gas indicator, not a certified life-safety alarm.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="climas.js"></script>
+<script>
+  let PLAN = 'connect-monthly';
+
+  // plan selection
+  document.getElementById('planPick').addEventListener('click', (e) => {
+    const opt = e.target.closest('.plan-opt');
+    if (!opt) return;
+    document.querySelectorAll('.plan-opt').forEach(o => o.classList.remove('sel'));
+    opt.classList.add('sel');
+    PLAN = opt.dataset.plan;
+  });
+
+  // load live prices from Supabase products (falls back to page defaults if not configured)
+  (async function loadPrices() {
+    if (!CLIMAS.configured) return;
+    try {
+      const products = await CLIMAS.getProducts();
+      const device = products.find(p => p.slug === 'climas-device');
+      if (device) document.getElementById('devicePrice').textContent = CLIMAS.money(device.price_pesewas);
+      products.filter(p => p.kind === 'plan').forEach(p => {
+        const el = document.querySelector('[data-plan-price="' + p.slug + '"]');
+        if (el) el.textContent = CLIMAS.money(p.price_pesewas) + '/' + (p.period === 'year' ? 'yr' : 'mo');
+      });
+    } catch (e) { console.warn(e); }
+  })();
+
+  // continue to checkout
+  document.getElementById('buyBtn').addEventListener('click', () => {
+    CLIMAS.setCart({ device: 'climas-device', plan: PLAN, qty: 1 });
+    location.href = 'checkout.html';
+  });
+</script>
+</body>
+</html>

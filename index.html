@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CLIMAS — Gas and air safety for the Ghanaian home</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%234fa87b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="#threats">Why it matters</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-ghost" data-nav="signin" href="account.html">Sign in</a>
+      <a class="btn btn-solid" href="shop.html">Buy CLIMAS</a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="#threats">Why it matters</a>
+  <a href="#how">How it works</a>
+  <a href="#pricing">Pricing</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <div class="mm-cta">
+    <a class="btn btn-line btn-block" data-nav="signin" href="account.html">Sign in</a>
+    <a class="btn btn-solid btn-block" href="shop.html">Buy CLIMAS</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="bar"></span> Built in Ghana for Ghanaian homes</span>
+      <h1 class="hero-title">Your home should tell you before the gas does.</h1>
+      <p class="hero-sub">
+        CLIMAS watches the air in your kitchen for two things that hurt families here:
+        a leaking LPG cylinder, and carbon monoxide from a generator running through dumsor.
+        When it senses danger it screams, lights up, and calls your phone.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-solid btn-lg" href="shop.html">Buy CLIMAS</a>
+        <a class="btn btn-line btn-lg" href="#how">See how it works</a>
+      </div>
+      <div class="hero-note"><span class="chk"></span> The alarm works forever, with or without a subscription.</div>
+    </div>
+
+    <div class="device" id="device">
+      <div class="device-top">
+        <span class="device-name">CLIMAS · KITCHEN</span>
+        <span class="device-live"><span class="ld"></span> LIVE</span>
+      </div>
+      <div class="screen">
+        <div class="screen-row">
+          <div class="metric">
+            <div class="metric-label">Temperature</div>
+            <div class="metric-val" id="mTemp">28.4<small>&deg;C</small></div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Humidity</div>
+            <div class="metric-val" id="mHum">61<small>%</small></div>
+          </div>
+        </div>
+        <div class="gasbar-wrap">
+          <div class="gasbar-head">
+            <span class="lab">Gas level</span>
+            <span class="status-pill status-safe" id="gStatus">SAFE</span>
+          </div>
+          <div class="track"><div class="fill" id="gFill"></div></div>
+        </div>
+      </div>
+      <div class="device-foot">
+        <span id="dFoot">All clear · last checked just now</span>
+        <span>climas.live</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- THREATS -->
+<section class="tinted" id="threats">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick">Two real dangers, one device</div>
+      <h2 class="sec-title">The things that fill a home quietly</h2>
+      <p class="sec-lead">Most homes here have no way to know either of these is happening until it is already dangerous. CLIMAS is built specifically for both.</p>
+    </div>
+    <div class="threat-grid">
+      <div class="threat threat-lpg">
+        <span class="threat-tag tag-lpg">LPG cooking gas</span>
+        <h3>A cylinder that leaks while you sleep</h3>
+        <p>A loose regulator or a worn hose lets cooking gas fill the room slowly. You often cannot smell it until there is enough to catch a spark.</p>
+        <p>CLIMAS senses LPG building up and sounds the alarm early, while opening a window and closing the valve is still all it takes.</p>
+      </div>
+      <div class="threat threat-co">
+        <span class="threat-tag tag-co">Carbon monoxide</span>
+        <h3>A generator running through the night</h3>
+        <p>When the lights go and the generator comes on too close to the house, it produces carbon monoxide. It has no smell and no colour, and people go to sleep and do not wake up.</p>
+        <p>CLIMAS detects carbon monoxide directly and calls your phone, so someone knows even if everyone inside is already asleep.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick">How it works</div>
+      <h2 class="sec-title">A working alarm on its own. Smarter when it is connected.</h2>
+      <p class="sec-lead">The part that keeps you safe never depends on payment or wifi. The subscription adds the connected features on top.</p>
+    </div>
+    <div class="layers">
+      <div class="layer layer-free">
+        <span class="layer-badge badge-free">Always on · free forever</span>
+        <h3>The device</h3>
+        <div class="price-note">Included with every CLIMAS, no subscription needed</div>
+        <ul class="flist">
+          <li><span class="chk"></span> Senses LPG and carbon monoxide in the room</li>
+          <li><span class="chk"></span> Loud alarm and flashing light when gas is detected</li>
+          <li><span class="chk"></span> Shows temperature, humidity and gas level on screen</li>
+          <li><span class="chk"></span> Keeps working during dumsor on its backup battery</li>
+          <li><span class="chk"></span> Runs even with no wifi and no active plan</li>
+        </ul>
+      </div>
+      <div class="layer layer-smart">
+        <span class="layer-badge badge-smart">Smart features · subscription</span>
+        <h3>CLIMAS Connect</h3>
+        <div class="price-note">Free for your first 30 days, then a monthly plan</div>
+        <ul class="flist">
+          <li><span class="chk"></span> Calls your phone automatically when gas is detected</li>
+          <li><span class="chk"></span> Sends SMS alerts to your emergency contacts</li>
+          <li><span class="chk"></span> Live readings and history on the web and app dashboard</li>
+          <li><span class="chk"></span> Add more than one emergency contact</li>
+          <li><span class="chk"></span> Watch several devices across rooms or buildings</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="tinted" id="device-specs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick">The device</div>
+      <h2 class="sec-title">What is inside</h2>
+      <p class="sec-lead">Real sensors chosen for a kitchen, not the cheapest parts that pass a demo.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec"><div class="k">LPG sensing</div><div class="v">Figaro TGS2610<span>Detector-grade cooking gas sensor</span></div></div>
+      <div class="spec"><div class="k">Carbon monoxide</div><div class="v">Winsen ZE07-CO<span>Factory-calibrated, real ppm</span></div></div>
+      <div class="spec"><div class="k">Climate</div><div class="v">Sensirion SHT31<span>Accurate temperature and humidity</span></div></div>
+      <div class="spec"><div class="k">Power</div><div class="v">Mains + backup<span>Keeps running through outages</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kick">Pricing</div>
+      <h2 class="sec-title">Buy the device once. The alarm is yours to keep.</h2>
+      <p class="sec-lead">Every device comes with 30 days of the smart features free. After that, keep them for a small monthly plan, or keep just the local alarm at no cost.</p>
+    </div>
+    <div class="price-wrap">
+      <div class="price-card price-device">
+        <h3>CLIMAS device</h3>
+        <div class="amount"><span class="big">GH&#8373;400</span> <span class="per">one-time</span></div>
+        <div class="price-desc">The full device with both gas sensors, screen, loud alarm and backup battery. Yours to keep.</div>
+        <div class="trial-line"><span class="chk"></span> Includes 30 days of CLIMAS Connect free</div>
+        <ul class="flist">
+          <li><span class="chk"></span> Ships assembled and tested</li>
+          <li><span class="chk"></span> Set up in minutes from your phone</li>
+          <li><span class="chk"></span> Local alarm works free, forever</li>
+        </ul>
+        <a class="btn btn-solid btn-block" href="shop.html">Buy CLIMAS</a>
+      </div>
+      <div class="price-card price-sub">
+        <h3>CLIMAS Connect</h3>
+        <div class="amount"><span class="big">GH&#8373;25</span> <span class="per">/ month</span></div>
+        <div class="price-desc">The connected features: emergency calls, SMS alerts, and the live dashboard. Starts free for 30 days with every device.</div>
+        <div class="trial-line"><span class="chk"></span> Or GH&#8373;250 per year, two months saved</div>
+        <ul class="flist">
+          <li><span class="chk"></span> Automatic call to your phone on danger</li>
+          <li><span class="chk"></span> SMS to your emergency contacts</li>
+          <li><span class="chk"></span> Live dashboard and reading history</li>
+        </ul>
+        <a class="btn btn-line btn-block" href="shop.html">Start with a device</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section>
+  <div class="wrap">
+    <div class="trust-in">
+      <h2>Made here, for how we actually live</h2>
+      <p>CLIMAS is designed and built in Kumasi. It is not a foreign smoke alarm repackaged for our market. It is built around the two things that really put homes at risk here: leaking cooking gas, and generator fumes when the power goes.</p>
+      <p>The local alarm will always work, whether or not you ever pay for a subscription, because safety should not switch off when a payment is late. The subscription is for the connected features that need our servers to run, like calling your phone. Those are the only things a plan controls.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+        <p>Gas and air safety for the Ghanaian home. Built in Kumasi.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Product</h4>
+          <a href="#how">How it works</a>
+          <a href="#device-specs">The device</a>
+          <a href="#pricing">Pricing</a>
+          <a href="shop.html">Buy CLIMAS</a>
+        </div>
+        <div class="foot-col">
+          <h4>Account</h4>
+          <a data-nav="signin" href="account.html">Sign in</a>
+          <a href="account.html">Your orders</a>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 CLIMAS. All rights reserved.</span>
+      <span>CLIMAS is an early-warning gas indicator, not a certified life-safety alarm.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="climas.js"></script>
+<script>
+  (function () {
+    const mTemp = document.getElementById('mTemp');
+    const mHum  = document.getElementById('mHum');
+    const fill  = document.getElementById('gFill');
+    const pill  = document.getElementById('gStatus');
+    const foot  = document.getElementById('dFoot');
+    let t = 28.4, h = 61, i = 0;
+    const cycle = [
+      { pct: 18, s: 'SAFE',    cls: 'status-safe',    col: 'var(--safe)',    foot: 'All clear · last checked just now' },
+      { pct: 24, s: 'SAFE',    cls: 'status-safe',    col: 'var(--safe)',    foot: 'All clear · monitoring' },
+      { pct: 52, s: 'CAUTION', cls: 'status-caution', col: 'var(--caution)', foot: 'Gas rising · keep watching' },
+      { pct: 88, s: 'DANGER',  cls: 'status-danger',  col: 'var(--danger)',  foot: 'Gas detected · calling your phone' },
+      { pct: 30, s: 'SAFE',    cls: 'status-safe',    col: 'var(--safe)',    foot: 'Cleared · alarm reset' },
+    ];
+    function tick() {
+      t += (Math.random() - 0.5) * 0.4; t = Math.max(26.5, Math.min(30.5, t));
+      h += (Math.random() - 0.5) * 1.2; h = Math.max(52, Math.min(68, h));
+      mTemp.innerHTML = t.toFixed(1) + '<small>&deg;C</small>';
+      mHum.innerHTML  = Math.round(h) + '<small>%</small>';
+      const c = cycle[i];
+      fill.style.width = c.pct + '%';
+      fill.style.background = c.col;
+      pill.className = 'status-pill ' + c.cls;
+      pill.textContent = c.s;
+      foot.textContent = c.foot;
+      i = (i + 1) % cycle.length;
+    }
+    tick();
+    setInterval(tick, 2600);
+  })();
+</script>
+</body>
+</html>

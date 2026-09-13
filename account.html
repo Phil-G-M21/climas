@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Account — CLIMAS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='%234fa87b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+    <div class="nav-links">
+      <a href="index.html#how">How it works</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn btn-solid" href="shop.html">Buy CLIMAS</a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="index.html#how">How it works</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <div class="mm-cta">
+    <a class="btn btn-solid btn-block" href="shop.html">Buy CLIMAS</a>
+  </div>
+</div>
+
+<!-- ── SIGNED OUT: auth ── -->
+<div id="authView" style="display:none">
+  <div class="auth-shell">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="signin">Sign in</button>
+        <button class="auth-tab" data-tab="signup">Create account</button>
+      </div>
+
+      <div class="notice notice-err hide" id="authErr"></div>
+
+      <!-- sign in -->
+      <div id="signinForm">
+        <h2>Welcome back</h2>
+        <p class="sub">Sign in to see your orders and manage your account.</p>
+        <div class="field"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com"></div>
+        <div class="field"><label>Password</label><input type="password" id="siPass" placeholder="Your password"></div>
+        <button class="btn btn-solid btn-lg btn-block" id="signinBtn">Sign in</button>
+      </div>
+
+      <!-- sign up -->
+      <div id="signupForm" style="display:none">
+        <h2>Create your account</h2>
+        <p class="sub">It takes a moment. You will use this to track orders and set up your device.</p>
+        <div class="field"><label>Full name</label><input type="text" id="suName" placeholder="Your name"></div>
+        <div class="field"><label>Email</label><input type="email" id="suEmail" placeholder="you@example.com"></div>
+        <div class="field"><label>Password</label><input type="password" id="suPass" placeholder="At least 6 characters"><div class="hint">Use six or more characters.</div></div>
+        <button class="btn btn-solid btn-lg btn-block" id="signupBtn">Create account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SIGNED IN: account ── -->
+<div id="accountView" style="display:none">
+  <div class="page-head">
+    <div class="wrap">
+      <h1 id="greeting">Your account</h1>
+      <p id="acctEmail">&nbsp;</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="account-grid">
+      <div class="account-nav">
+        <button class="active" data-panel="orders">Your orders</button>
+        <button data-panel="profile">Profile</button>
+        <button data-panel="device">Your device</button>
+        <button id="signOutBtn">Sign out</button>
+      </div>
+
+      <div class="account-panel">
+        <!-- orders -->
+        <div id="panel-orders">
+          <h2>Your orders</h2>
+          <p class="psub">Every order you place, and where it is in the process.</p>
+          <div id="ordersHost"><div class="page-loading"><span class="spinner"></span></div></div>
+        </div>
+
+        <!-- profile -->
+        <div id="panel-profile" style="display:none">
+          <h2>Profile</h2>
+          <p class="psub">This is used for delivery and, later, for the phone your device calls in an emergency.</p>
+          <div class="notice notice-ok hide" id="profOk"></div>
+          <div style="max-width:460px">
+            <div class="field"><label>Full name</label><input type="text" id="pfName"></div>
+            <div class="field"><label>Phone number</label><input type="tel" id="pfPhone"></div>
+            <div class="field"><label>City or town</label><input type="text" id="pfCity"></div>
+            <div class="field"><label>Emergency contact phone</label><input type="tel" id="pfEmerg"><div class="hint">The number CLIMAS calls when it detects danger.</div></div>
+            <button class="btn btn-solid" id="saveProfBtn">Save changes</button>
+          </div>
+        </div>
+
+        <!-- device -->
+        <div id="panel-device" style="display:none">
+          <h2>Your device</h2>
+          <p class="psub">Setting up and pairing your CLIMAS is done in the mobile app.</p>
+          <div class="empty-state">
+            <h4>Pairing happens in the CLIMAS app</h4>
+            <p style="margin-bottom:8px;line-height:1.6">Once your device arrives, open the CLIMAS app, sign in with this same account, and follow the steps to connect it to your wifi and start live monitoring.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bootLoading" class="page-loading"><span class="spinner"></span></div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="dot"></span> CLIMAS</a>
+        <p>Gas and air safety for the Ghanaian home. Built in Kumasi.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h4>Product</h4><a href="index.html#how">How it works</a><a href="shop.html">Buy CLIMAS</a></div>
+        <div class="foot-col"><h4>Company</h4><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 CLIMAS. All rights reserved.</span>
+      <span>CLIMAS is an early-warning gas indicator, not a certified life-safety alarm.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="climas.js"></script>
+<script>
+  const qs = new URLSearchParams(location.search);
+  const NEXT = qs.get('next');
+
+  const STATUS = {
+    pending_payment: { label: 'Pending payment', cls: 'badge-pending' },
+    paid:            { label: 'Paid',            cls: 'badge-paid' },
+    shipped:         { label: 'Shipped',         cls: 'badge-shipped' },
+    delivered:       { label: 'Delivered',       cls: 'badge-delivered' },
+    cancelled:       { label: 'Cancelled',       cls: 'badge-cancelled' }
+  };
+
+  function boot(view) {
+    document.getElementById('bootLoading').style.display = 'none';
+    document.getElementById('authView').style.display = view === 'auth' ? 'block' : 'none';
+    document.getElementById('accountView').style.display = view === 'account' ? 'block' : 'none';
+  }
+
+  // ---- tab switching (signed out) ----
+  document.querySelectorAll('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const isSignup = tab.dataset.tab === 'signup';
+      document.getElementById('signinForm').style.display = isSignup ? 'none' : 'block';
+      document.getElementById('signupForm').style.display = isSignup ? 'block' : 'none';
+      document.getElementById('authErr').classList.add('hide');
+    });
+  });
+
+  function authError(msg) {
+    const e = document.getElementById('authErr');
+    e.textContent = msg; e.classList.remove('hide');
+  }
+
+  function afterAuth() {
+    if (NEXT) { location.href = NEXT; return; }
+    location.reload();
+  }
+
+  document.getElementById('signinBtn').addEventListener('click', async () => {
+    if (!CLIMAS.configured) { authError('Backend not configured yet. Add your Supabase keys in climas.js.'); return; }
+    const email = document.getElementById('siEmail').value.trim();
+    const pass = document.getElementById('siPass').value;
+    if (!email || !pass) { authError('Enter your email and password.'); return; }
+    const btn = document.getElementById('signinBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Signing in';
+    try { await CLIMAS.signIn(email, pass); afterAuth(); }
+    catch (e) { authError(e.message || 'Could not sign in.'); btn.disabled = false; btn.textContent = 'Sign in'; }
+  });
+
+  document.getElementById('signupBtn').addEventListener('click', async () => {
+    if (!CLIMAS.configured) { authError('Backend not configured yet. Add your Supabase keys in climas.js.'); return; }
+    const name = document.getElementById('suName').value.trim();
+    const email = document.getElementById('suEmail').value.trim();
+    const pass = document.getElementById('suPass').value;
+    if (!name || !email || !pass) { authError('Fill in your name, email and password.'); return; }
+    if (pass.length < 6) { authError('Password should be at least 6 characters.'); return; }
+    const btn = document.getElementById('signupBtn');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Creating account';
+    try { await CLIMAS.signUp(email, pass, name); afterAuth(); }
+    catch (e) { authError(e.message || 'Could not create account.'); btn.disabled = false; btn.textContent = 'Create account'; }
+  });
+
+  // ---- account panels (signed in) ----
+  document.querySelectorAll('.account-nav button[data-panel]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.account-nav button[data-panel]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      ['orders','profile','device'].forEach(p => {
+        document.getElementById('panel-' + p).style.display = (p === b.dataset.panel) ? 'block' : 'none';
+      });
+    });
+  });
+
+  document.getElementById('signOutBtn').addEventListener('click', () => CLIMAS.signOut());
+
+  function renderOrders(orders) {
+    const host = document.getElementById('ordersHost');
+    if (!orders.length) {
+      host.innerHTML = '<div class="empty-state"><h4>No orders yet</h4><p style="margin-bottom:22px">When you buy a CLIMAS it will show here.</p><a class="btn btn-solid" href="shop.html">Go to shop</a></div>';
+      return;
+    }
+    host.innerHTML = '<div class="orders-list">' + orders.map(o => {
+      const st = STATUS[o.status] || STATUS.pending_payment;
+      const date = new Date(o.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      const items = (o.order_items || []).map(i => i.name_snapshot + (i.qty > 1 ? ' x' + i.qty : '')).join(', ') || 'CLIMAS device';
+      return '<div class="order-card">' +
+        '<div class="order-top"><span class="order-id">CLM-' + o.id.slice(0,6).toUpperCase() + '</span>' +
+        '<span class="badge ' + st.cls + '">' + st.label + '</span></div>' +
+        '<div class="order-body"><div><div class="order-items">' + items + '</div>' +
+        '<div class="order-date">' + date + '</div></div>' +
+        '<div class="order-total">' + CLIMAS.money(o.subtotal_pesewas) + '</div></div></div>';
+    }).join('') + '</div>';
+  }
+
+  async function loadAccount(user) {
+    document.getElementById('acctEmail').textContent = user.email;
+    let prof = null;
+    try { prof = await CLIMAS.getProfile(user.id); } catch (e) {}
+    if (prof && prof.full_name) document.getElementById('greeting').textContent = 'Hello, ' + prof.full_name.split(' ')[0];
+
+    // profile fields
+    if (prof) {
+      document.getElementById('pfName').value = prof.full_name || '';
+      document.getElementById('pfPhone').value = prof.phone || '';
+      document.getElementById('pfCity').value = prof.city || '';
+      document.getElementById('pfEmerg').value = prof.emergency_phone || '';
+    }
+
+    document.getElementById('saveProfBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('saveProfBtn');
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Saving';
+      try {
+        await CLIMAS.updateProfile(user.id, {
+          full_name: document.getElementById('pfName').value.trim(),
+          phone: document.getElementById('pfPhone').value.trim(),
+          city: document.getElementById('pfCity').value.trim(),
+          emergency_phone: document.getElementById('pfEmerg').value.trim()
+        });
+        const ok = document.getElementById('profOk');
+        ok.textContent = 'Saved.'; ok.classList.remove('hide');
+        setTimeout(() => ok.classList.add('hide'), 3000);
+      } catch (e) { CLIMAS.toast(e.message || 'Could not save', 'err'); }
+      btn.disabled = false; btn.textContent = 'Save changes';
+    });
+
+    // orders
+    try { renderOrders(await CLIMAS.getOrders(user.id)); }
+    catch (e) { document.getElementById('ordersHost').innerHTML = '<div class="empty-state"><h4>Could not load orders</h4><p>Please refresh the page.</p></div>'; }
+  }
+
+  // ---- init ----
+  (async function () {
+    if (!CLIMAS.configured) { boot('auth'); authError('Backend not configured yet. Add your Supabase project URL and anon key in climas.js, then this page will work.'); return; }
+    const user = await CLIMAS.getUser();
+    if (user) { boot('account'); loadAccount(user); }
+    else { boot('auth'); }
+  })();
+</script>
+</body>
+</html>
